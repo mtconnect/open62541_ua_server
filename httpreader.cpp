@@ -44,6 +44,7 @@ bool HttpReader::connect()
     }
     catch (exception &e)
     {
+        close();
         std::cerr << "[" << m_host << ":" << m_port << "] " << e.what() << endl;
         return false;
     }
@@ -51,6 +52,9 @@ bool HttpReader::connect()
     boost::system::error_code ec;
     boost::asio::socket_base::keep_alive option(true);
     m_stream->set_option(option, ec);
+
+    boost::asio::ip::tcp::no_delay noDelayOption(true);
+    m_stream->set_option(noDelayOption);
 
     m_lastConnectionTime = time(nullptr);
     return true;
@@ -72,6 +76,7 @@ bool HttpReader::connectSSL()
     // Set SNI Hostname (many hosts need this to handshake successfully)
     if(!SSL_set_tlsext_host_name(stream->native_handle(), m_host.c_str()))
     {
+        delete stream;
         beast::error_code ec{static_cast<int>(::ERR_get_error()), net::error::get_ssl_category()};
         throw beast::system_error{ec};
     }
@@ -86,9 +91,15 @@ bool HttpReader::connectSSL()
     stream->handshake(ssl::stream_base::client);
 
     if (m_stream)
-        delete m_stream;
+    {
+        if (m_isSSL)
+            delete (ssl::stream<tcp::socket> *)m_stream;
+        else
+            delete m_stream;
+    }
 
     m_stream = (tcp::socket *)stream;
+
     return true;
 }
 
@@ -100,15 +111,17 @@ void HttpReader::close()
             beast::error_code ec;
             m_stream->shutdown(tcp::socket::shutdown_both, ec);
             m_buffer.consume(m_buffer.size());
-
-//            delete m_stream;
         }
         catch (exception &e)
         {
             cerr << e.what() << endl;
         }
 
-        delete m_stream;
+        if (m_isSSL)
+            delete (ssl::stream<tcp::socket> *)m_stream;
+        else
+            delete m_stream;
+
         m_stream = nullptr;
     }
     m_lastConnectionTime = 0;
