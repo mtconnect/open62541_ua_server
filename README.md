@@ -20,6 +20,9 @@ If build successful, **opcua-MTServer** should be generated in the current direc
 
 Checkout **binaries/Windows/README.md** and **binaries/Ubuntu/README.md** for detailed instructions.
 
+Running
+-------
+
 Usage:
 
 - opcua-MTServer **[MTConnect Agent URL address] [poll cycle in seconds]**
@@ -33,7 +36,7 @@ Example:  opcua-MTServer opcua.cfg
 
 opcua.cfg allows connections to multiple MTConnect Agents. The file is a CSV file. Each line contains <agent's url> and its poll frequency in seconds.
 
-opcua-MTServer listens on default port 4840. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**
+opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**
 
 Binary Releases 
 -------
