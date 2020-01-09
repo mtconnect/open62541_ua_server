@@ -33,6 +33,8 @@ Example:  opcua-MTServer opcua.cfg
 
 opcua.cfg allows connections to multiple MTConnect Agents. The file is a CSV file. Each line contains <agent's url> and its poll frequency in seconds.
 
+opcua-MTServer listens on default port 4840. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://<host server ip address>:4840**
+
 Binary Releases 
 -------
 
