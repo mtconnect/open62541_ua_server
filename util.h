@@ -1,6 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <open62541/server.h>
 #include <boost/property_tree/ptree.hpp>
 #include <string>
 
@@ -64,6 +65,13 @@ public:
                                   const UA_NodeId referenceType,
                                   const UA_QualifiedName componentName,
                                   const void *value, const UA_DataType *type);
+
+    static void log(const char * level, const char *msg, va_list args);
+
+    static void log_info(const char *msg, ...)  { va_list args; va_start(args, msg); log("info", msg, args);  }
+    static void log_warn(const char *msg, ...)  { va_list args; va_start(args, msg); log("warn", msg, args);  }
+    static void log_error(const char *msg, ...) { va_list args; va_start(args, msg); log("error", msg, args); }
+
 };
 
 #endif // UTIL_H

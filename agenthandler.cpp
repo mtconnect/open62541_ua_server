@@ -1,4 +1,6 @@
 ﻿#include <open62541/server.h>
+#include <open62541/server_config_default.h>
+#include <open62541/plugin/log_stdout.h>
 #include <open62541/types.h>
 
 #include <boost/property_tree/xml_parser.hpp>
@@ -9,7 +11,6 @@
 #include <boost/filesystem.hpp>
 #include <boost/thread.hpp>
 #include <boost/chrono.hpp>
-
 
 #include <cstdio>
 #include <ctime>
@@ -72,7 +73,7 @@ void agentHandler::processProbeInfo(string probeXml)
     }
     catch (exception & e)
     {
-        std::cerr << e.what() << endl;
+        util::log_error("%s", e.what());
         return;
     }
 
@@ -677,7 +678,7 @@ UA_NodeId agentHandler::addDeviceDataItem(string deviceUUID, UA_NodeId &parentNo
         {
             enumLoaded = m_typesMgr.getDictionary(displayName + "ClassType", enumValues);
             if (!enumLoaded)
-                cerr << "Cannot load enums for " << displayName << endl;
+                util::log_error("Cannot load enums for %s", displayName.c_str());
         }
 
         if (enumLoaded == true)
@@ -728,7 +729,7 @@ bool agentHandler::parseStreamData(string xmlText)
     }
     catch (exception & e)
     {
-        std::cerr << e.what() << endl;
+        util::log_error("%s", e.what());
         return false;
     }
 
@@ -776,8 +777,7 @@ int agentHandler::processStreamData()
     }
     catch (exception& e)
     {
-        cerr << e.what() << endl;
-        cerr << m_xml << endl;
+        util::log_error("%s", e.what());
     }
 
     return total;
@@ -1284,7 +1284,7 @@ void agentHandler::updateData(string variable, string dateTime, string data, ptr
         // unknown
         if (myInt32 < 0)
         {
-            cerr << "cannot map " << data << endl;
+            util::log_error("Cannot map %s", data.c_str());
             return;
         }
         else
@@ -1315,8 +1315,6 @@ void agentHandler::updateData(string variable, string dateTime, string data, ptr
                 util::writeObject_scalar(m_uaServer, nodeId, UA_NODEID_NUMERIC(0, UA_NS0ID_HASPROPERTY),
                                          UA_QUALIFIEDNAME(2, "ValueAsText"),
                                          &myString, &UA_TYPES[UA_TYPES_STRING]);
-
-                cerr << "map " << data << " to " << myInt32 << endl;
 
                 // set it to UA_NS0ID_ENUMVALUETYPE, so next time skip the enum load process
                 m_fieldDataTypes[variable] = UA_NODEID_NUMERIC(0, UA_NS0ID_ENUMVALUETYPE);

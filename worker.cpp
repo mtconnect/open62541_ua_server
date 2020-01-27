@@ -1,4 +1,5 @@
 ﻿#include <stdlib.h>
+
 #include <open62541/server.h>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -30,15 +31,15 @@ bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, Settings *settings, s
 
     m_interval = atoi(interval.c_str());
     if (m_interval <= 0) {
-        std::cerr << "interval [" << interval << "] is invalid" << endl;
+        util::log_error("interval [%s] is invalid", interval.c_str());
         return false;
     }
 
     m_namespace = UA_Server_addNamespace(m_uaServer, uri.c_str());
-    std::cout << "----------------" << endl;
-    std::cout << "Agent Uri:       " << uri << endl;
-    std::cout << "Poll Interval:   " << interval << endl;
-    std::cout << "namespace : " << m_namespace << endl;
+
+    util::log_info("Agent Uri:       %s", uri.c_str());
+    util::log_info("Poll Interval:   %s", interval.c_str());
+    util::log_info("namespace:       %d", m_namespace);
 
     m_handler.setup(m_uaServer, m_topNode, m_namespace);
     if (m_reader.parseUri(uri))
@@ -53,7 +54,7 @@ bool Worker::setMetaInfo()
     string probeXml = m_reader.read();
     if (probeXml.length() == 0)
     {
-        std::cerr << "No data!" << endl;
+        util::log_error("No data!");
         return false;
     }
 
@@ -84,7 +85,7 @@ void Worker::poll()
 
     if (xmlData.length() == 0)
     {
-        std::cerr << "No data!" << endl;
+        util::log_error("No data!");
         return;
     }
 
@@ -93,7 +94,7 @@ void Worker::poll()
     }
     catch (exception & e)
     {
-        std::cerr << e.what() << endl;
+        util::log_error("%s", e.what());
         return;
     }
 
@@ -101,19 +102,23 @@ void Worker::poll()
     string sequence = m_handler.getJSON_data("MTConnectStreams.Header.<xmlattr>.nextSequence");
     if (sequence.compare(m_next_sequence) == 0)
     {
-        std::cout << "========== { " << m_uri << " [round: "<< m_poll_count << "] process items = 0, next sequence = " << m_next_sequence << " } ==========" << std::endl;
+        util::log_info("%s [round: %d] next sequence = %s, process items = 0",
+                     m_uri.c_str(), m_poll_count, m_next_sequence.c_str());
         return;
     }
 
     if (sequence.length() == 0)
     {
         // last next_sequence may be invalid, reset to using "current" to fetch the latest data
-        std::cout << "========== { " << m_uri << " [round: "<< m_poll_count << "] BAD sequence number, reset to fetch current data } ==========" << std::endl;
+        util::log_warn("%s [round: %d] BAD sequence number, reset to fetch current data",
+                     m_uri.c_str(), m_poll_count);
+        m_next_sequence = "";
         return;
     }
 
     int processCount = m_handler.processStreamData();
     m_next_sequence = sequence;
-    std::cout << "========== { " << m_uri << " [round: " << m_poll_count << "] processed items = " << processCount << ", next sequence = " << m_next_sequence << " } ==========" << std::endl;
+    util::log_info("%s [round: %d] next sequence = %s, process items = %d",
+                 m_uri.c_str(), m_poll_count, m_next_sequence.c_str(), processCount);
 }
 

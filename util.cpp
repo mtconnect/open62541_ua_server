@@ -1,9 +1,9 @@
 #include <open62541/server.h>
 #include <open62541/types.h>
 
-
 #include <boost/property_tree/xml_parser.hpp>
 
+#include <pthread.h>
 #include <iostream>
 
 #include "util.h"
@@ -184,3 +184,24 @@ void util::strptime(const char* s,
     input.imbue(std::locale(setlocale(LC_ALL, nullptr)));
     input >> std::get_time(tm, f);
 }
+
+void util::log(const char * level, const char *msg, va_list args)
+{
+    static pthread_mutex_t printf_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+    UA_Int64 tOffset = UA_DateTime_localTimeUtcOffset();
+    UA_DateTimeStruct dts = UA_DateTime_toStruct(UA_DateTime_now() + tOffset);
+
+    pthread_mutex_lock(&printf_mutex);
+
+    printf("[%04u-%02u-%02u %02u:%02u:%02u.%03u (UTC%+05d)] %-5s ",
+           dts.year, dts.month, dts.day, dts.hour, dts.min, dts.sec, dts.milliSec,
+           (int)(tOffset / UA_DATETIME_SEC / 36), level);
+
+    vprintf(msg, args);
+    printf("\n");
+    fflush(stdout);
+
+    pthread_mutex_unlock(&printf_mutex);
+}
+

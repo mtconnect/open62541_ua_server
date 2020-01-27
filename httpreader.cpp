@@ -3,12 +3,14 @@
 
 #include <boost/asio.hpp>
 #include <boost/algorithm/string.hpp>
+
 #include <cstdlib>
 #include <iostream>
 #include <cctype>
 #include <regex>
 
 #include "httpreader.h"
+#include "util.h"
 
 namespace beast = boost::beast; // from <boost/beast.hpp>
 namespace http = beast::http;   // from <boost/beast/http.hpp>
@@ -45,7 +47,7 @@ bool HttpReader::connect()
     catch (exception &e)
     {
         close();
-        std::cerr << "[" << m_host << ":" << m_port << "] " << e.what() << endl;
+        util::log_error("[%s:%s] %s", m_host.c_str(), m_port.c_str(), e.what());
         return false;
     }
 
@@ -114,7 +116,7 @@ void HttpReader::close()
         }
         catch (exception &e)
         {
-            cerr << e.what() << endl;
+            util::log_error("%s", e.what());
         }
 
         if (m_isSSL)
@@ -161,7 +163,7 @@ string HttpReader::read()
     }
     catch(std::exception const& e)
     {
-        std::cerr << "[" << m_host << ":" << m_port << "] Error: " << e.what() << std::endl;
+        util::log_error("[%s:%s] %s", m_host.c_str(), m_port.c_str(), e.what());
 
         string respdata = res.body().data();
 
@@ -170,11 +172,9 @@ string HttpReader::read()
 
         time_t last = m_lastConnectionTime;
         if (!connect())
-            std::cerr <<
-                "[" << m_host << ":" << m_port << "] Fail to reconnect to MT agent!" << std::endl;
+            util::log_error("[%s:%s] Fail to reconnect to MT agent!", m_host.c_str(), m_port.c_str());
         else {
-            std::cerr <<
-                "[" << m_host << ":" << m_port << "] Reconnect to MT agent!"  << std::endl;
+            util::log_error("[%s:%s] Reconnect to MT agent!", m_host.c_str(), m_port.c_str());
 
             // avoid repeat read errors if reconnect happens within 5 seconds
             if (m_lastConnectionTime - last > 5)

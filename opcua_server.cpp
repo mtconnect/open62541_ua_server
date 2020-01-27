@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-#include <open62541/plugin/log_stdout.h>
 #include <open62541/server.h>
 #include <open62541/server_config_default.h>
 #include <open62541/types.h>
@@ -37,7 +36,7 @@ static Worker *createWorker(UA_Server *server, UA_NodeId &nodeId, string uri, st
 static volatile UA_Boolean running = true;
 static void stopHandler(int sig)
 {
-    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_USERLAND, "received ctrl-c");
+    util::log_info("received ctrl-c");
     running = false;
 }
 
@@ -77,8 +76,7 @@ int main(int argc, char** argv)
     config->customDataTypes = &customTypesArray;
 
     if (nodeset(server) != UA_STATUSCODE_GOOD) {
-        UA_LOG_ERROR(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, "Could not add the nodeset. "
-            "Check previous output for any error.");
+        util::log_error("Could not add the nodeset. Check previous output for any error.");
         return -1;
     }
 
