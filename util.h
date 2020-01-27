@@ -5,6 +5,8 @@
 #include <boost/property_tree/ptree.hpp>
 #include <string>
 
+#include <stdarg.h>
+
 using namespace std;
 using boost::property_tree::ptree;
 
