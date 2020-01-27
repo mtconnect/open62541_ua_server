@@ -40,7 +40,7 @@ Perform the following steps in a Cygwin64 terminal:
 	- git clone https://github.com/mtconnect/open62541_ua_server.git
 	- cd open62541_ua_server
 	- mkdir build && cd build
-	- cmake .. -G "Unix MakeFiles"
+	- cmake .. -G "Unix Makefiles"
 	- make
 	- check if opc-MTServer.exe is built in the current directory
 
