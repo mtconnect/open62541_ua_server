@@ -64,7 +64,7 @@ server:
 
 opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**. 
 
-A demo server is set up on **opc.tcp://opc.mtconnect.org:4840**.
+To help our project demonstration, an open62541-based MTConnect Gateway server is set up with the above configuration file **example.cfg**. Its endpoint URL is **opc.tcp://opc.mtconnect.org:4840**. **UAExpoert** or any OPC UA clients can communication with this server via this URL.
 
 Binary Releases 
 -------
