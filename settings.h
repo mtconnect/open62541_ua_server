@@ -9,16 +9,17 @@ using namespace std;
 class Settings
 {
 private:
-    map< string, int> m_collection;
-    int m_nextns;
+    map< string, string > m_collection;
 
 public:
-    static string getSettingsName(string progName);
+    bool logInfo;
+    bool logWarn;
+    bool logError;
 
-    void restore(string filename);
-    void save(string filename);
-    void set(string &key, int ns);
-    int get(string &key);
+    int parse(string filename);
+
+    string get(string key, string defValue);
+    void set(string key, string value);
 
     void dump();
 

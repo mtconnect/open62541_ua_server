@@ -8,6 +8,13 @@
 
 #include "util.h"
 
+static Settings settings;
+
+Settings &util::getSettings()
+{
+    return settings;
+}
+
 void util::writeDataWithTimeStamp(UA_Server *server, UA_NodeId nodeId, string dateTime, UA_Variant &myVar)
 {
     UA_WriteValue wv;
@@ -205,3 +212,39 @@ void util::log(const char * level, const char *msg, va_list args)
     pthread_mutex_unlock(&printf_mutex);
 }
 
+void util::log(const char *msg, ...)
+{
+    va_list args;
+    va_start(args, msg);
+    log("info", msg, args);
+}
+
+void util::log_info(const char *msg, ...)
+{
+    if (!settings.logInfo)
+        return;
+
+    va_list args;
+    va_start(args, msg);
+    log("info", msg, args);
+}
+
+void util::log_warn(const char *msg, ...)
+{
+    if (!settings.logWarn)
+        return;
+
+    va_list args;
+    va_start(args, msg);
+    log("warn", msg, args);
+}
+
+void util::log_error(const char *msg, ...)
+{
+    if (!settings.logError)
+        return;
+
+    va_list args;
+    va_start(args, msg);
+    log("error", msg, args);
+}

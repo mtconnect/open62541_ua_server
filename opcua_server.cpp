@@ -9,8 +9,6 @@
 #include <open62541/types_generated_handling.h>
 
 #include <boost/thread.hpp>
-#include <boost/tokenizer.hpp>
-#include <boost/filesystem.hpp>
 
 #include "worker.h"
 #include "nodeset.h"
@@ -19,14 +17,13 @@
 
 using namespace boost;
 
-static Settings settings;
-static string settingsName;
+#define MT_PROGRAM_NAME "open62541-based MTConnect Gateway"
 
 static Worker *createWorker(UA_Server *server, UA_NodeId &nodeId, string uri, string poll)
 {
     Worker *worker = new Worker();
 
-    if (!worker->setup(server, nodeId, &settings, uri, poll))
+    if (!worker->setup(server, nodeId, uri, poll))
         return nullptr;
 
     return worker;
@@ -66,12 +63,32 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    // settingsName = Settings::getSettingsName("OPCUA-MTServer");
-    // settings.restore(settingsName);
+    Settings &settings = util::getSettings();
+
+    if (argc == 2)
+        settings.parse(argv[1]);
+    else
+    {
+        string uri = argv[1];
+        string poll = argv[2];
+
+        settings.set("agents|url1", uri);
+        settings.set("agents|freq1", poll);
+    }
+
+    string port = settings.get("server|port", "4840");
 
     UA_Server *server = UA_Server_new();
     UA_ServerConfig *config = UA_Server_getConfig(server);
-    UA_ServerConfig_setDefault(config);
+    UA_ServerConfig_setMinimal(config, atoi(port.c_str()), nullptr);
+
+    string programName = settings.get("server|name", MT_PROGRAM_NAME);
+
+    // change the application name to MTConnect specific
+    config->applicationDescription.applicationName = UA_LOCALIZEDTEXT_ALLOC("en", programName.c_str());
+
+    for (size_t i=0; i < config->endpointsSize; i++)
+        config->endpoints[i].server.applicationName = UA_LOCALIZEDTEXT_ALLOC("en", programName.c_str());
 
     config->customDataTypes = &customTypesArray;
 
@@ -85,75 +102,35 @@ int main(int argc, char** argv)
     vector<Worker*> worker_pool;
     vector<thread*> thread_pool;
 
-    boost::thread *bthread = nullptr;
-    if (argc != 2)
+    boost::thread *bthread = nullptr;    
+
+    int index=1;
+    while (true)
     {
-        string uri = argv[1];
-        string poll = argc > 2 ? argv[2] : "60";
+        string key = "agents|url" + to_string(index);
+        string uri = settings.get("agents|url" + to_string(index), "");
+        if (uri.length() == 0)
+            break;
+
+        string poll = settings.get("agents|freq" + to_string(index), "60");
 
         Worker *worker = createWorker(server, topId, uri, poll);
 
         if (worker == nullptr)
-            return -1;
+            continue;
 
         worker_pool.push_back(worker);
 
         bthread = new boost::thread(boost::bind(&Worker::run, worker));
 
         thread_pool.push_back(bthread);
-    }
-    else {
 
-        ifstream in(argv[1]);
-        if (!in.is_open()) {
-            std::cerr << "Cannot open config file " << argv[1] << "!" << endl;
-            return -1;
-        }
-
-        typedef tokenizer< escaped_list_separator<char> > Tokenizer;
-        vector< string > vec;
-        string line;
-
-        while (getline(in, line))
-        {
-            Tokenizer tok(line);
-            vec.assign(tok.begin(), tok.end());
-
-            unsigned long argc = vec.size();
-
-            // empty line
-            if (argc == 0)
-                continue;
-
-            if (argc != 1 && argc != 2)
-            {
-                std::cerr << "Invalid input [" << line << "]" << endl;
-                return -1;
-            }
-
-            string uri = vec[0];
-            if (uri[0] == '#')
-                continue;
-
-            string poll = argc > 1 ? vec[1] : "60";
-
-            Worker *worker = createWorker(server, topId, uri, poll);
-
-            if (worker == nullptr)
-                continue;
-
-            worker_pool.push_back(worker);
-
-            bthread = new boost::thread(boost::bind(&Worker::run, worker));
-
-            thread_pool.push_back(bthread);
-        }
+        index++;
     }
 
     if (worker_pool.size() == 0)
         return -1;
 
-    // settings.save(settingsName);
     UA_StatusCode retval = UA_Server_run(server, &running);
 
     UA_Server_delete(server);

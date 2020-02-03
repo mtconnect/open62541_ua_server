@@ -4,100 +4,119 @@
 #include <boost/thread.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/algorithm/string/trim.hpp>
 #include "settings.h"
 
+using namespace boost;
 
 Settings::Settings()
 {
-    m_nextns = 1;
+    logWarn = true;
+    logInfo = true;
 }
 
-string Settings::getSettingsName(string progName)
+string Settings::get(string key, string defValue)
 {
-    const char* homeDrive = getenv("HOMEDRIVE");
-    const char* homePath = getenv("HOMEPATH");
-    string homeDir = "";
-
-    if (homeDrive != nullptr && homePath != nullptr)
-    {
-        // Windows
-        homeDir = homeDrive;
-        homeDir += homePath;
-    }
-    else {
-        // unix
-        const char *home = getenv("HOME");
-        if (home != nullptr)
-            homeDir = home;
-
-        // homeDir is "" (current directory) if no environment
-    }
-
-
-    boost::filesystem::path dir (homeDir);
-    boost::filesystem::path file (progName + ".settings");
-    boost::filesystem::path fullFilename = dir / file;
-
-    return fullFilename.string();
-}
-
-void Settings::set(string &key, int ns)
-{
-    map<string, int>::iterator i = m_collection.find(key);
-
-    if (i != m_collection.end())
-        i->second = ns;
-    else
-        m_collection.insert(pair<string, int>(key, ns));
-}
-
-int Settings::get(string &key)
-{
-    std::map<string, int>::iterator i = m_collection.find(key);
+    std::map<string, string>::iterator i = m_collection.find(key);
 
     if (i != m_collection.end())
         return i->second;
 
-    int ret = m_nextns++;
-    m_collection.insert(pair<string, int>(key, ret));
-    return ret;
+    return defValue;
 }
 
+void Settings::set(string key, string value)
+{
+    m_collection.insert(pair<string, string>(key, value));
+}
 
 void Settings::dump()
 {
-    for (map<string, int>::iterator p = m_collection.begin(); p != m_collection.end(); p++)
+    for (map<string, string>::iterator p = m_collection.begin(); p != m_collection.end(); p++)
         std::cout << p->first << ": " << p->second << std::endl;
 }
 
-void Settings::restore(string filename)
+int Settings::parse(string filename)
 {
-    std::ifstream os(filename);
-    string input;
-    while (std::getline(os, input))
-    {
-        unsigned long pos = input.find_first_of("|");
-        string key = input.substr(0, pos);
-        int value = std::stoi(input.substr(pos + 1));
-
-        if (value > m_nextns)
-            m_nextns = value + 1;
-
-        std::cout << "Restoring - " << key << " = " << value << std::endl;
-        m_collection.insert(pair<string, int>(key, value));
-
-    }
-    os.close();
-}
-
-void Settings::save(string filename)
-{
-    std::ofstream os(filename);
-    for (map<string, int>::iterator p = m_collection.begin(); p != m_collection.end(); p++)
-    {
-        std::cout << "Updating - " << p->first << " = " << p->second << std::endl;
-        os << p->first << "|" << p->second << std::endl;
+    ifstream in(filename);
+    if (!in.is_open()) {
+        std::cerr << "Cannot open config file " << filename << "!" << endl;
+        return -1;
     }
 
-    os.close();
+    typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+    vector< string > vec;
+    string line;
+    string keyPath;
+    string key;
+    string value;
+    unsigned long pos;
+
+    int seqNum = 0;
+
+    while (getline(in, line))
+    {
+        if (line[0] == '#')
+            continue;
+
+        algorithm::trim(line);
+
+        // blank line
+        if (line.length() == 0)
+            continue;
+
+        pos = line.find_first_of(":");
+
+        if (pos == string::npos)
+        {
+            std::cerr << "Invalid input [" << line << "]" << endl;
+            continue;
+        }
+
+        key = line.substr(0, pos);
+        value = line.substr(pos + 1);
+
+        algorithm::trim(key);
+        algorithm::trim(value);
+
+        if (value.length() == 0)
+        {
+            keyPath = key;
+            seqNum = 0;
+            continue;
+        }
+
+        if (key[0] == '-')
+        {
+            seqNum++;
+            key = key.substr(1);
+            algorithm::trim(key);
+
+        }
+
+        if (seqNum != 0)
+            key += std::to_string(seqNum);
+
+        m_collection.insert(pair<string, string>(keyPath+"|"+key, value));
+    }
+
+    in.close();
+
+    string logLevel = get("logging|severity", "info");
+    if (logLevel.compare("warn") == 0)
+        logInfo = false;
+    else if (logLevel.compare("error") == 0)
+    {
+        logInfo = false;
+        logWarn = false;
+    }
+    else if (logLevel.compare("fatal") == 0)
+    {
+        logInfo = false;
+        logWarn = false;
+        logError = false;
+    }
+
+    return 0;
 }
+

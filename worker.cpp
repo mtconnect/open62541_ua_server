@@ -22,10 +22,9 @@ Worker::~Worker()
     m_reader.close();
 }
 
-bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, Settings *settings, string uri, string interval)
+bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval)
 {
     m_uri = uri;
-    m_settings = settings;
     m_uaServer = uaServer;
     m_topNode = topNode;
 
@@ -37,9 +36,9 @@ bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, Settings *settings, s
 
     m_namespace = UA_Server_addNamespace(m_uaServer, uri.c_str());
 
-    util::log_info("Agent Uri:       %s", uri.c_str());
-    util::log_info("Poll Interval:   %s", interval.c_str());
-    util::log_info("namespace:       %d", m_namespace);
+    util::log("Agent Uri:       %s", uri.c_str());
+    util::log("Poll Interval:   %s", interval.c_str());
+    util::log("namespace:       %d", m_namespace);
 
     m_handler.setup(m_uaServer, m_topNode, m_namespace);
     if (m_reader.parseUri(uri))
@@ -102,7 +101,7 @@ void Worker::poll()
     string sequence = m_handler.getJSON_data("MTConnectStreams.Header.<xmlattr>.nextSequence");
     if (sequence.compare(m_next_sequence) == 0)
     {
-        util::log_info("%s [round: %d] next sequence = %s, process items = 0",
+        util::log_info("%s [round: %d] next sequence = %s, processed items = 0",
                      m_uri.c_str(), m_poll_count, m_next_sequence.c_str());
         return;
     }
@@ -118,7 +117,7 @@ void Worker::poll()
 
     int processCount = m_handler.processStreamData();
     m_next_sequence = sequence;
-    util::log_info("%s [round: %d] next sequence = %s, process items = %d",
+    util::log_info("%s [round: %d] next sequence = %s, processed items = %d",
                  m_uri.c_str(), m_poll_count, m_next_sequence.c_str(), processCount);
 }
 

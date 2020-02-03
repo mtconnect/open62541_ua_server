@@ -28,7 +28,7 @@ public:
     Worker();
     ~Worker();
 
-    bool setup(UA_Server *uaServer, UA_NodeId topNode, Settings *settings, string uri, string interval);
+    bool setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval);
     bool setMetaInfo();
 
     void run();

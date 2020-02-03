@@ -7,14 +7,18 @@
 
 #include <stdarg.h>
 
+#include "settings.h"
+
 using namespace std;
 using boost::property_tree::ptree;
 
 #define VerifyReturn(a) util::handleStatus(a, __FUNCTION__, __FILE__, __LINE__ )
 
 class util
-{
+{   
 public:
+    static Settings& getSettings();
+
     static string toString(UA_String& ua_str) {
         return std::string(reinterpret_cast<char*>(ua_str.data), ua_str.length);
     }
@@ -24,7 +28,7 @@ public:
     }
 
     static UA_LocalizedText toUALocalizedText(string &str) {
-        return UA_LOCALIZEDTEXT("en-US", (char*) str.c_str());
+        return UA_LOCALIZEDTEXT("en", (char*) str.c_str());
     }
 
     static UA_QualifiedName toUAQualifiedName(UA_UInt16 nsIndex, string &str) {
@@ -70,9 +74,10 @@ public:
 
     static void log(const char * level, const char *msg, va_list args);
 
-    static void log_info(const char *msg, ...)  { va_list args; va_start(args, msg); log("info", msg, args);  }
-    static void log_warn(const char *msg, ...)  { va_list args; va_start(args, msg); log("warn", msg, args);  }
-    static void log_error(const char *msg, ...) { va_list args; va_start(args, msg); log("error", msg, args); }
+    static void log(const char *msg, ...);
+    static void log_info(const char *msg, ...);
+    static void log_warn(const char *msg, ...);
+    static void log_error(const char *msg, ...);
 
 };
 
