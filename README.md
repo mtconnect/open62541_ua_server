@@ -34,9 +34,35 @@ or
 
 Example:  opcua-MTServer opcua.cfg
 
-opcua.cfg allows connections to multiple MTConnect Agents. The file is a CSV file. Each line contains <agent's url> and its poll frequency in seconds.
+opcua.cfg allows connections to multiple MTConnect Agents. The file is a yaml file with section for MT Agents, logging and server port. **example.cfg** is an example:
 
-opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**
+# MTConnect agents information
+agents:
+    - name: NIST
+      url: https://smstestbed.nist.gov/vds/
+      freq: 2
+    - name: Mazak1
+      url: http://66.42.196.108:5610
+      freq: 5
+    - name: Mazak2
+      url: http://66.42.196.108:5611
+      freq: 5
+    - name: Mazak3
+      url: http://66.42.196.108:5612
+      freq: 5
+
+# serverity can be info, warn, error or fatal
+logging:
+    severity: warn
+
+# opcua server program name and its discover port #
+server: 
+    name: open62541-based MTConnect Gateway
+    port: 4840
+
+opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**. 
+
+A demo server is set up on **opc.tcp://opc.mtconnect.org:4840**.
 
 Binary Releases 
 -------
