@@ -44,7 +44,8 @@ public:
 private:
 
     void processDeviceMetaInfo(string deviceUUID, UA_NodeId &topNode, ptree &ptree, string path, vector<UA_NodeId> &nodePath);
-    UA_NodeId addDeviceDataItem(string deviceUUID, UA_NodeId &topNode, ptree &dataItem, multiset<string> &appendName, string path, vector<UA_NodeId> &nodePath);
+    UA_NodeId addDeviceDataItem(string deviceUUID, UA_NodeId &topNode, ptree &dataItem, multiset<string> &appendName, string path,
+                                vector<UA_NodeId> &nodePath, map< string, string > &compositionIdMap);
     void setProperties(UA_NodeId &topNode, ptree &dataItem);
 
     int processDeviceStreamData(const string &deviceName, const string &deviceUUID, const string &componentId, const string &levelName, ptree &pt);

@@ -122,7 +122,7 @@ void agentHandler::processProbeInfo(string probeXml)
             UA_NodeId descriptionNodeId;
 
             ptree& deviceDescription = device.get_child("Description.<xmlattr>");
-            oAttr.displayName = UA_LOCALIZEDTEXT("en-US", "Description");
+            oAttr.displayName = UA_LOCALIZEDTEXT("en", "Description");
             VerifyReturn(UA_Server_addObjectNode(m_uaServer, UA_NODEID_NUMERIC(m_namespace, 0),
                                     deviceNodeId,
                                     UA_NODEID_NUMERIC(0, UA_NS0ID_HASCOMPONENT),
@@ -139,16 +139,12 @@ void agentHandler::processProbeInfo(string probeXml)
 
         addNotifier(UA_NODEID_NUMERIC(0, UA_NS0ID_SERVER), deviceNodeId, true);
 
-        string settingsName = Settings::getSettingsName("OPCUA-" + deviceUUID);
-//        m_settings.restore(settingsName);
-
         vector<UA_NodeId> nodePath;
 
         nodePath.push_back(deviceNodeId);
         processDeviceMetaInfo(deviceUUID, deviceNodeId, device, "", nodePath);
 
         UA_NodeId_deleteMembers(&deviceNodeId);
-//        m_settings.save(settingsName);
     }
 
     open62541_mutex.unlock();
@@ -160,11 +156,67 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
 
     researchDisplayNames(probeInfo, nameList);
 
+    // process compositions first so we can use their info later
+    map< string, string > compositionIdMap;
+
+    for (ptree::iterator p = probeInfo.begin(); p != probeInfo.end(); p++)
+    {
+        string display = p->first;
+        if (display.compare("Compositions") != 0)
+            continue;
+
+        ptree& dataItems = p->second;
+
+        UA_NodeId compositionTopId;
+        UA_ObjectAttributes oAttr = UA_ObjectAttributes_default;
+        oAttr.displayName = util::toUALocalizedText(display);
+        VerifyReturn(UA_Server_addObjectNode(m_uaServer, UA_NODEID_NULL,
+                                parentNode,
+                                UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
+                                util::toUAQualifiedName(m_namespace, display),
+                                UA_NODEID_NUMERIC(0, UA_NS0ID_FOLDERTYPE),
+                                oAttr,
+                                NULL,
+                                &compositionTopId));
+
+        for (ptree::iterator pos = dataItems.begin(); pos != dataItems.end(); pos++)
+        {
+            string type = util::getJSON_data(pos->second, "<xmlattr>.type");
+            string id = util::getJSON_data(pos->second, "<xmlattr>.id");
+
+            string t = util::toCamelCase(type);
+
+            compositionIdMap.insert(pair<string, string>(id, t));
+
+            oAttr.displayName = util::toUALocalizedText(t);
+
+            UA_NodeId nextId;
+            VerifyReturn(UA_Server_addObjectNode(m_uaServer,
+                                      UA_NODEID_NUMERIC(m_namespace, 0),
+                                      compositionTopId,
+                                      UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
+                                      util::toUAQualifiedName(m_namespace, t),
+                                      UA_NODEID_NUMERIC(2, MT_MTCOMPOSITIONTYPE),
+                                      oAttr,
+                                      NULL,
+                                      &nextId));
+
+            setMTTypeNameAndId(nextId, type, id);
+            UA_NodeId_deleteMembers(&nextId);
+        }
+
+        UA_NodeId_deleteMembers(&compositionTopId);
+
+        break;
+    }
+
     for (ptree::iterator p = probeInfo.begin(); p != probeInfo.end(); p++)
     {
         string display = p->first;
 
-        if (display.compare("<xmlattr>") == 0 || display.compare("Description") == 0)
+        // compositions is already processed
+        if (display.compare("<xmlattr>") == 0 || display.compare("Description") == 0 ||
+                display.compare("Compositions") == 0)
             continue;
 
         if (util::isLeafNode(p))
@@ -194,7 +246,8 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
                 if (category.compare("CONDITION") == 0)
                     s += "Condition";
 
-                UA_NodeId itemNode = addDeviceDataItem(deviceUUID, parentNode, pos->second.get_child("<xmlattr>"), nameListDataItem, path, nodePath);
+                UA_NodeId itemNode = addDeviceDataItem(deviceUUID, parentNode, pos->second.get_child("<xmlattr>"), nameListDataItem, path, nodePath,
+                                                       compositionIdMap);
 
                 // check for Source
                 string source = util::getJSON_data(pos->second, "Source");
@@ -269,7 +322,7 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
                     if (constraints.size() > 0)
                     {
                         UA_ObjectAttributes oAttr = UA_ObjectAttributes_default;
-                        oAttr.displayName = UA_LOCALIZEDTEXT("en-US", "Constraints");
+                        oAttr.displayName = UA_LOCALIZEDTEXT("en", "Constraints");
 
                         UA_NodeId constraintNode;
                         VerifyReturn(UA_Server_addObjectNode(m_uaServer,
@@ -319,7 +372,7 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
                             mnAttr.dataType = UA_NODEID_NUMERIC(0, UA_NS0ID_STRING);
                             UA_Variant_setArray(&mnAttr.value, data, size, &UA_TYPES[UA_TYPES_STRING]);
 
-                            mnAttr.displayName = UA_LOCALIZEDTEXT("en-US", "Values");
+                            mnAttr.displayName = UA_LOCALIZEDTEXT("en", "Values");
                             VerifyReturn(UA_Server_addVariableNode(m_uaServer, UA_NODEID_NULL, constraintNode,
                                                       UA_NODEID_NUMERIC(0, UA_NS0ID_HASPROPERTY),
                                                       UA_QUALIFIEDNAME(m_namespace, "Values"),
@@ -335,47 +388,6 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
 
                 UA_NodeId_deleteMembers(&itemNode);
             }
-        }
-        else if (display.compare("Compositions") == 0)
-        {
-            ptree& dataItems = p->second;
-
-            UA_NodeId compositionTopId;
-            UA_ObjectAttributes oAttr = UA_ObjectAttributes_default;
-            oAttr.displayName = util::toUALocalizedText(display);
-            VerifyReturn(UA_Server_addObjectNode(m_uaServer, UA_NODEID_NULL,
-                                    parentNode,
-                                    UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
-                                    util::toUAQualifiedName(m_namespace, display),
-                                    UA_NODEID_NUMERIC(0, UA_NS0ID_FOLDERTYPE),
-                                    oAttr,
-                                    NULL,
-                                    &compositionTopId));
-
-            for (ptree::iterator pos = dataItems.begin(); pos != dataItems.end(); pos++)
-            {
-                string type = util::getJSON_data(pos->second, "<xmlattr>.type");
-                string id = util::getJSON_data(pos->second, "<xmlattr>.id");
-
-                string t = util::toCamelCase(type);
-                oAttr.displayName = util::toUALocalizedText(t);
-
-                UA_NodeId nextId;
-                VerifyReturn(UA_Server_addObjectNode(m_uaServer,
-                                          UA_NODEID_NUMERIC(m_namespace, 0),
-                                          compositionTopId,
-                                          UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
-                                          util::toUAQualifiedName(m_namespace, t),
-                                          UA_NODEID_NUMERIC(2, MT_MTCOMPOSITIONTYPE),
-                                          oAttr,
-                                          NULL,
-                                          &nextId));
-
-                setMTTypeNameAndId(nextId, type, id);
-                UA_NodeId_deleteMembers(&nextId);
-            }
-
-            UA_NodeId_deleteMembers(&compositionTopId);
         }
         else
         {
@@ -441,7 +453,8 @@ void agentHandler::processDeviceMetaInfo(string deviceUUID, UA_NodeId &parentNod
     }
 }
 
-UA_NodeId agentHandler::addDeviceDataItem(string deviceUUID, UA_NodeId &parentNode, ptree &dataItem, multiset<string> &appendName, string path, vector<UA_NodeId> &nodePath)
+UA_NodeId agentHandler::addDeviceDataItem(string deviceUUID, UA_NodeId &parentNode, ptree &dataItem, multiset<string> &appendName, string path,
+                                          vector<UA_NodeId> &nodePath, map< string, string > &compositionIdMap)
 {
     std::map<string, string> m;
 
@@ -458,6 +471,7 @@ UA_NodeId agentHandler::addDeviceDataItem(string deviceUUID, UA_NodeId &parentNo
     string subType = m["subType"];
     string category = m["category"];
     string name = m["name"];
+    string compositeId = m["compositionId"];
 
     UA_NodeId nextId;
     string subTypeCamelCase;
@@ -478,6 +492,12 @@ UA_NodeId agentHandler::addDeviceDataItem(string deviceUUID, UA_NodeId &parentNo
             actualDisplayName += "[" + name + "]";
     }
 
+    // prefix composition id's name if any
+    if (compositeId.length() > 0)
+    {
+        string compositeName = compositionIdMap[compositeId];
+        actualDisplayName = compositeName + actualDisplayName;
+    }
 
     string nodeIdentifier = deviceUUID + "." + id;
     if (category.compare("EVENT") == 0)
