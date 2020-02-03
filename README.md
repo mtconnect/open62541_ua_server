@@ -34,7 +34,7 @@ or
 
 Example:  opcua-MTServer opcua.cfg
 
-opcua.cfg allows connections to multiple MTConnect Agents. The file is a yaml file with section for MT Agents, logging and server port. **example.cfg** is an example:
+opcua.cfg is a yaml file with configuration sections for MT Agents, logging and server. For example, check out the configurations in **example.cfg**:
 
 ```
 # MTConnect agents information
