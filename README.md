@@ -36,6 +36,7 @@ Example:  opcua-MTServer opcua.cfg
 
 opcua.cfg allows connections to multiple MTConnect Agents. The file is a yaml file with section for MT Agents, logging and server port. **example.cfg** is an example:
 
+```
 # MTConnect agents information
 agents:
     - name: NIST
@@ -59,6 +60,7 @@ logging:
 server: 
     name: open62541-based MTConnect Gateway
     port: 4840
+```
 
 opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**. 
 
