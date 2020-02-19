@@ -73,7 +73,7 @@ Windows, Ubuntu, MacOS and Raspberry PI 4 pre-built binaries are available:
 
 Windows: [opcua-MTServer-1.0.0-win32.zip](https://github.com/mtconnect/open62541_ua_server/files/4150942/opcua-MTServer-1.0.0-win64.zip)
 
-Ubunt:   [opcua-MTServer-1.0.0-Linux.zip](https://github.com/mtconnect/open62541_ua_server/files/4150937/opcua-MTServer-1.0.0-Linux.zip)
+Ubuntu:   [opcua-MTServer-1.0.0-Linux.zip](https://github.com/mtconnect/open62541_ua_server/files/4150937/opcua-MTServer-1.0.0-Linux.zip)
 
 MacOS:   [opcua-MTServer-1.0.0-Darwin.zip](https://github.com/mtconnect/open62541_ua_server/files/4150935/opcua-MTServer-1.0.0-Darwin.zip)
 
