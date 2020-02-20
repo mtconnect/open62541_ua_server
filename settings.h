@@ -12,6 +12,7 @@ private:
     map< string, string > m_collection;
 
 public:
+    bool logDebug;
     bool logInfo;
     bool logWarn;
     bool logError;

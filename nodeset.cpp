@@ -213,7 +213,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2861),
 UA_NODEID_NUMERIC(ns[1], 2659),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2861), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -348,6 +348,9 @@ static UA_StatusCode function_nodeset_14_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2748),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -371,6 +374,9 @@ static UA_StatusCode function_nodeset_15_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default JSON");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2750),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -394,6 +400,9 @@ static UA_StatusCode function_nodeset_16_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default Binary");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2745),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -418,6 +427,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ReferenceTypeAttributes attr = UA_ReferenceTypeAttributes_default;
 attr.symmetric  = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "HasMTSource");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The \\mtmodel{Source} relation to a \\gls{MTComponent} or \\gls{MTDataItem}.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_REFERENCETYPE,
 UA_NODEID_NUMERIC(ns[1], 2689),
 UA_NODEID_NUMERIC(ns[0], 32),
@@ -463,6 +475,9 @@ static UA_StatusCode function_nodeset_19_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ReferenceTypeAttributes attr = UA_ReferenceTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "HasMTClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A \\gls{MTDataItem} is representated in OPC UA as a sub-type of the most\\n      appropriate \\uamodel{BaseDataVariableType}. The type is derived from the\\n      MTConnect \\gls{type} attribute and references the corect\\n      \\mtmodel{..ClassType} \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_REFERENCETYPE,
 UA_NODEID_NUMERIC(ns[1], 2680),
 UA_NODEID_NUMERIC(ns[0], 32),
@@ -485,6 +500,9 @@ static UA_StatusCode function_nodeset_20_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ReferenceTypeAttributes attr = UA_ReferenceTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "HasMTSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A \\gls{MTDataItem} is representated in OPC UA as a sub-type of the most\\n      appropriate \\uamodel{BaseDataVariableType}. The sub-type is derived from\\n      the MTConnect \\gls{subType} attribute and references the corect\\n      \\mtmodel{..ClassType}. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_REFERENCETYPE,
 UA_NODEID_NUMERIC(ns[1], 2683),
 UA_NODEID_NUMERIC(ns[0], 32),
@@ -703,11 +721,14 @@ variablenode_ns_1_i_2785_variant_DataContents[0] = UA_LOCALIZEDTEXT("en", "MACHI
 variablenode_ns_1_i_2785_variant_DataContents[1] = UA_LOCALIZEDTEXT("en", "WORK");
 UA_Variant_setArray(&attr.value, &variablenode_ns_1_i_2785_variant_DataContents, (UA_Int32) 2, &UA_TYPES[UA_TYPES_LOCALIZEDTEXT]);
 attr.displayName = UA_LOCALIZEDTEXT("", "EnumStrings");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{coordinateSystem} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2785),
 UA_NODEID_NUMERIC(ns[1], 2635),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2785), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -726,6 +747,9 @@ static UA_StatusCode function_nodeset_30_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{coordinateSystem} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2789),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -774,6 +798,9 @@ static UA_StatusCode function_nodeset_32_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Represents the \\gls{category} attribute of the MTConnect \\gls{MTDataItem}.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2769),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -811,11 +838,14 @@ variablenode_ns_1_i_2765_variant_DataContents[1] = UA_LOCALIZEDTEXT("en", "CONDI
 variablenode_ns_1_i_2765_variant_DataContents[2] = UA_LOCALIZEDTEXT("en", "SAMPLE");
 UA_Variant_setArray(&attr.value, &variablenode_ns_1_i_2765_variant_DataContents, (UA_Int32) 3, &UA_TYPES[UA_TYPES_LOCALIZEDTEXT]);
 attr.displayName = UA_LOCALIZEDTEXT("", "EnumStrings");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Represents the \\gls{category} attribute of the MTConnect \\gls{MTDataItem}.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2765),
 UA_NODEID_NUMERIC(ns[1], 2634),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2765), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -835,7 +865,7 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_DataTypeAttributes attr = UA_DataTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTResetTriggerType");
 #ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
-attr.description = UA_LOCALIZEDTEXT("", "These need to become \\uamodel{Good_} status code in OPC UA.");
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These need to become \\uamodel{Good_} status code in OPC UA. resettrigger\\n      is an optional XML element that identifies the type of event that may\\n      cause a reset to occur. It is additional information regarding the meaning\\n      of the data that establishes an understanding of the time frame that the\\n      data represents so that the data may be correctly understood by a client\\n      software application.\\n");
 #endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_DATATYPE,
 UA_NODEID_NUMERIC(ns[1], 2636),
@@ -859,6 +889,9 @@ static UA_StatusCode function_nodeset_35_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These need to become \\uamodel{Good_} status code in OPC UA. resettrigger\\n      is an optional XML element that identifies the type of event that may\\n      cause a reset to occur. It is additional information regarding the meaning\\n      of the data that establishes an understanding of the time frame that the\\n      data represents so that the data may be correctly understood by a client\\n      software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2837),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -902,11 +935,14 @@ variablenode_ns_1_i_2833_variant_DataContents[7] = UA_LOCALIZEDTEXT("en", "SHIFT
 variablenode_ns_1_i_2833_variant_DataContents[8] = UA_LOCALIZEDTEXT("en", "WEEK");
 UA_Variant_setArray(&attr.value, &variablenode_ns_1_i_2833_variant_DataContents, (UA_Int32) 9, &UA_TYPES[UA_TYPES_LOCALIZEDTEXT]);
 attr.displayName = UA_LOCALIZEDTEXT("", "EnumStrings");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These need to become \\uamodel{Good_} status code in OPC UA. resettrigger\\n      is an optional XML element that identifies the type of event that may\\n      cause a reset to occur. It is additional information regarding the meaning\\n      of the data that establishes an understanding of the time frame that the\\n      data represents so that the data may be correctly understood by a client\\n      software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2833),
 UA_NODEID_NUMERIC(ns[1], 2636),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2833), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -950,6 +986,9 @@ static UA_StatusCode function_nodeset_38_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{representation} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2831),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -987,11 +1026,14 @@ variablenode_ns_1_i_2827_variant_DataContents[1] = UA_LOCALIZEDTEXT("en", "TIME_
 variablenode_ns_1_i_2827_variant_DataContents[2] = UA_LOCALIZEDTEXT("en", "VALUE");
 UA_Variant_setArray(&attr.value, &variablenode_ns_1_i_2827_variant_DataContents, (UA_Int32) 3, &UA_TYPES[UA_TYPES_LOCALIZEDTEXT]);
 attr.displayName = UA_LOCALIZEDTEXT("", "EnumStrings");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{representation} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2827),
 UA_NODEID_NUMERIC(ns[1], 2633),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2827), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -1035,6 +1077,9 @@ static UA_StatusCode function_nodeset_41_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default JSON");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2914),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -1058,6 +1103,9 @@ static UA_StatusCode function_nodeset_42_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default Binary");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2909),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -1081,6 +1129,9 @@ static UA_StatusCode function_nodeset_43_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2912),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -1706,7 +1757,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2943),
 UA_NODEID_NUMERIC(ns[1], 2668),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2943), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -1764,11 +1815,14 @@ variablenode_ns_1_i_2937_variant_DataContents[1] = UA_LOCALIZEDTEXT("en", "NORMA
 variablenode_ns_1_i_2937_variant_DataContents[2] = UA_LOCALIZEDTEXT("en", "WARNING");
 UA_Variant_setArray(&attr.value, &variablenode_ns_1_i_2937_variant_DataContents, (UA_Int32) 3, &UA_TYPES[UA_TYPES_LOCALIZEDTEXT]);
 attr.displayName = UA_LOCALIZEDTEXT("", "EnumStrings");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2937),
 UA_NODEID_NUMERIC(ns[1], 2669),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2937), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -1787,6 +1841,9 @@ static UA_StatusCode function_nodeset_73_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Default XML");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2941),
 UA_NODEID_NUMERIC(ns[0], 0),
@@ -1811,6 +1868,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTDataItemSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       data entity describing a piece of information reported about a piece of\\n      equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2476),
 UA_NODEID_NUMERIC(ns[0], 11163),
@@ -1833,6 +1893,9 @@ static UA_StatusCode function_nodeset_75_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RockwellSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the resistance to deformation of a surface. A scale to\\n      measure the resistance to deformation of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2582),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1855,6 +1918,9 @@ static UA_StatusCode function_nodeset_76_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ResponseSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      \\mtmodel{Response} subtype identifies if the data item defined for\\n      MTConnect Interaction Model \\cite{MTCPart5} represents a response. A\\n      subtype of an interface dataitem type to communicate a response.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2580),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1877,6 +1943,9 @@ static UA_StatusCode function_nodeset_77_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SetUpSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of the person currently responsible for operating the piece\\n      of equipment. A structural element is being prepared or modified to begin\\n      production of product.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2586),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1899,6 +1968,9 @@ static UA_StatusCode function_nodeset_78_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BadSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Indicates the count of incorrect parts produced. Indicates the count of\\n      incorrect parts produced.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2492),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1921,6 +1993,9 @@ static UA_StatusCode function_nodeset_79_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RotarySubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The rotational direction of a rotary motion using the right hand rule\\n      convention. A rotary axis represents any non-linear or rotary movement of\\n      a physical piece of equipment or a portion of the equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2584),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1943,6 +2018,9 @@ static UA_StatusCode function_nodeset_80_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ShoreSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the resistance to deformation of a surface. A scale to\\n      measure the resistance to deformation of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2588),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1965,6 +2043,9 @@ static UA_StatusCode function_nodeset_81_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AScaleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "A Scale weighting factor for the measurement of sound level.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2488),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -1987,6 +2068,9 @@ static UA_StatusCode function_nodeset_82_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MinimumSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Minimum value recorded for the data item during the calculation period.\\n      The lower limit of data reported for a data item.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2542),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2031,6 +2115,9 @@ static UA_StatusCode function_nodeset_84_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OptionalStopSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A setting or operator selection that changes the behavior of the\\n      controller on a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2556),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2053,6 +2140,9 @@ static UA_StatusCode function_nodeset_85_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "StandardSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The standard or original value of an object. The standard or original\\n      length of an object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2590),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2075,6 +2165,9 @@ static UA_StatusCode function_nodeset_86_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AbsoluteSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The magnitude or measurement of a type irrespective of its relation to\\n      other values. The position of a block of program code relative to the\\n      beginning of the control program.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2478),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2097,6 +2190,9 @@ static UA_StatusCode function_nodeset_87_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaximumSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Maximum or peak value recorded for the data item during the calculation\\n      period. The upper limit of data reported for a data item.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2540),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2119,6 +2215,9 @@ static UA_StatusCode function_nodeset_88_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolGroupSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The tool group a specific tool is assigned to in the part program. An\\n      identifier for the tool group associated with a specific tool. Commonly\\n      used to designate spare tools.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2600),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2141,6 +2240,9 @@ static UA_StatusCode function_nodeset_89_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgrammedSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value of a signal or calculation issued to adjust the feedrate of the\\n      axes associated with a \\mtmodel{Path} component when the axes, or a single\\n      axis, are operating as specified by a logic or motion program or set by a\\n      switch. The value of a signal or calculation specified by a logic or\\n      motion program or set by a switch.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2568),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2185,6 +2287,9 @@ static UA_StatusCode function_nodeset_91_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LengthSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement or extent of something from end to end. The measurement of\\n      the length of an object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2526),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2207,6 +2312,9 @@ static UA_StatusCode function_nodeset_92_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "UasbleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The remaining useable value of an object.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2604),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2251,6 +2359,9 @@ static UA_StatusCode function_nodeset_94_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VerticalSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the position of a mechanism that may move in a vertical\\n      direction. An indication of the position of a mechanism that may move in a\\n      vertical direction. The mechanism is represented by a composition type\\n      component. The position information indicates whether the composition\\n      element is positioned to the top, to the bottom, or is in transition. The\\n      valid data value must be up value, down value, or transitioning value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2606),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2273,6 +2384,9 @@ static UA_StatusCode function_nodeset_95_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LateralSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the position of a mechanism that may move in a lateral\\n      direction. The mechanism is represented by a \\mtmodel{Composition} type\\n      component. An indication of the position of a mechanism that may move in a\\n      lateral direction. The mechanism is represented by a composition type\\n      component. The position information indicates whether the composition\\n      element is positioned to the right, to the left, or is in transition. The\\n      valid dat" "a value must be right value, left value, or transitioning value.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2522),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2295,6 +2409,9 @@ static UA_StatusCode function_nodeset_96_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VolumeSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "A measurement of space accupied by a physical object.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2608),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2317,6 +2434,9 @@ static UA_StatusCode function_nodeset_97_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PrimarySubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Specific applications MAY reference one or more locations on a piece of\\n      bar stock as the indication for the \\mtmodel{END_OF_BAR}. The main or most\\n      important location MUST be designated as the \\mtmodel{PRIMARY} indication\\n      for the \\mtmodel{END_OF_BAR}. Specific applications MAY reference one or\\n      more locations on a piece of bar stock as the indication for the endofbar\\n      event. The main or most important location must be designated as the\\n      pri" "mary subtype indication for the endofbar event. If no subtype is\\n      specified, primary subtype must be the default endofbar event indication.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2560),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2339,6 +2459,9 @@ static UA_StatusCode function_nodeset_98_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ActualSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measured value of the a type. The measured value of the data item type\\n      given by a sensor or encoder.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2480),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2361,6 +2484,9 @@ static UA_StatusCode function_nodeset_99_begin(UA_Server *server, UA_UInt16* ns)
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MohsSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the resistance to scratching of a surface. A scale to\\n      measure the resistance to scratching of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2544),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2383,6 +2509,9 @@ static UA_StatusCode function_nodeset_100_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AlternatingSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of a type occurring in turn repeatedly. The measurement of\\n      alternating voltage or current. If not specified further in statistic,\\n      defaults to RMS voltage. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2486),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2405,6 +2534,9 @@ static UA_StatusCode function_nodeset_101_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProbeSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The position provided by a measurement probe. The position provided by a\\n      measurement probe.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2564),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2427,6 +2559,9 @@ static UA_StatusCode function_nodeset_102_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AllSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       The count of all the parts produced. If the subtype is not given, this is\\n      the default.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2484),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2449,6 +2584,9 @@ static UA_StatusCode function_nodeset_103_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProcessSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the time from the beginning of production of a part or\\n      product on a piece of equipment until the time that production is complete\\n      for that part or product on that piece of equipment. This includes the\\n      time that the piece of equipment is running, producing parts or products,\\n      or in the process of producing parts. The measurement of the time from the\\n      beginning of production of a part or product on a piece of equipment until\\n     " " the time that production is complete for that part or product on that\\n      piece of equipment. This includes the time that the piece of equipment is\\n      running, producing parts or products, or in the process of producing\\n      parts.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2566),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2471,6 +2609,9 @@ static UA_StatusCode function_nodeset_104_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DirectSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Measurement of DC current or voltage. The measurement of DC current or voltage.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2508),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2493,6 +2634,9 @@ static UA_StatusCode function_nodeset_105_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ControlSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The state of the enabling signal or control logic that enables or disables\\n      the function or operation of the \\textit{Structural Element}. The state of\\n      the enabling signal or control logic that enables or disables the function\\n      or operation of the structural element.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2502),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2515,6 +2659,9 @@ static UA_StatusCode function_nodeset_106_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "GoodSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Indicates the count of correct parts made. Indicates the count of correct\\n      parts made.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2500),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2537,6 +2684,9 @@ static UA_StatusCode function_nodeset_107_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DelaySubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Measurement of the time that a piece of equipment is waiting for an event\\n      or an action to occur. A piece of equipment waiting for an event or an\\n      action to occur.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2506),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2559,6 +2709,9 @@ static UA_StatusCode function_nodeset_108_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CScaleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "C Scale weighting factor for the measurement of sound level.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2504),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2581,6 +2734,9 @@ static UA_StatusCode function_nodeset_109_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "TargetSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Indicates the number of parts that are projected or planned to be\\n      produced. The desired measure or count for a data item value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2594),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2603,6 +2759,9 @@ static UA_StatusCode function_nodeset_110_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolChangeStopSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A setting or operator selection that changes the behavior of the\\n      controller on a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2596),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2625,6 +2784,9 @@ static UA_StatusCode function_nodeset_111_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaintenanceSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of the person currently responsible for performing\\n      maintenance on the piece of equipment. Action related to maintenance on\\n      the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2536),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2647,6 +2809,9 @@ static UA_StatusCode function_nodeset_112_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ActionSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the operating state or value of a type. An indication of\\n      the operating state of a mechanism represented by a composition type\\n      component. The operating state indicates whether the composition element\\n      is activated or disabled. The valid data value must be active value or\\n      inactive value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2482),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2669,6 +2834,9 @@ static UA_StatusCode function_nodeset_113_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SwitchedSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the activation state of a mechanism represented by a\\n      \\mtmodel{Composition} type component. The activation state indicates\\n      whether the \\mtmodel{Composition} element is activated or not. An\\n      indication of the activation state of a mechanism represented by a\\n      composition type component. The activation state indicates whether the\\n      composition element is activated or not. The valid data value must be on\\n      value or off value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2592),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2691,6 +2859,9 @@ static UA_StatusCode function_nodeset_114_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RequestSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      \\mtmodel{Request} subtype identifies if the data item defined for\\n      MTConnect Interaction Model \\cite{MTCPart5} represents a request. A\\n      subtype of an interface dataitem type to communicate a request. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2578),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2713,6 +2884,9 @@ static UA_StatusCode function_nodeset_115_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BrinellSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the resistance to deformation of a surface. A scale to\\n      measure the resistance to deformation of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2494),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2735,6 +2909,9 @@ static UA_StatusCode function_nodeset_116_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LeebSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the elasticity of a surface. A scale to measure the\\n      elasticity of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2524),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2757,6 +2934,9 @@ static UA_StatusCode function_nodeset_117_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MotionSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the open or closed state of a mechanism. The mechanism is\\n      represented by a \\mtmodel{Composition} type component. An indication of\\n      the open or closed state of a mechanism. The mechanism is represented by a\\n      composition type component. The operating state indicates whether the\\n      state of the composition element is open, closed, or unlatched. The valid\\n      data value must be open value, unlatched value, or closed value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2548),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2801,6 +2981,9 @@ static UA_StatusCode function_nodeset_119_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MachineAxisLockSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A setting or operator selection that changes the behavior of the\\n      controller on a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2534),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2845,6 +3028,9 @@ static UA_StatusCode function_nodeset_121_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OverrideSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The operator's overridden value. DEPRECATED: The operators overridden\\n      value.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2558),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2867,6 +3053,9 @@ static UA_StatusCode function_nodeset_122_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LinearSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The direction of motion. A linear axis represents the movement of a\\n      physical piece of equipment, or a portion of the equipment, in a straight\\n      line. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2528),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2889,6 +3078,9 @@ static UA_StatusCode function_nodeset_123_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LoadedSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication that the sub-parts of a piece of equipment are under load.\\n      Subparts of a piece of equipment are under load.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2532),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2911,6 +3103,9 @@ static UA_StatusCode function_nodeset_124_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "NoScaleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "No weighting factor on the frequency scale for the measurement of sound level.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2550),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2933,6 +3128,9 @@ static UA_StatusCode function_nodeset_125_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CommandedSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value as specified by the Controller type component. A value specified\\n      by the controller type component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2498),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2955,6 +3153,9 @@ static UA_StatusCode function_nodeset_126_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OperatingSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication that the major sub-parts of a piece of equipment are powered\\n      or performing any activity whether producing a part or product or not.\\n      Example: For traditional machine tools, this includes when the piece of\\n      equipment is \\mtmodel{WORKING} or it is idle. A piece of equipment are\\n      powered or performing any activity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2552),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2977,6 +3178,9 @@ static UA_StatusCode function_nodeset_127_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OperatorSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of the person currently responsible for operating the piece\\n      of equipment. The identifier of the person currently responsible for\\n      operating the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2554),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -2999,6 +3203,9 @@ static UA_StatusCode function_nodeset_128_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LineSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The state of the power source for the \\textit{Structural Element}.\\n      DEPRECATED in Version 1.4.0.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2530),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3021,6 +3228,9 @@ static UA_StatusCode function_nodeset_129_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PoweredSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication that primary power is applied to the piece of equipment and,\\n      as a minimum, the controller or logic portion of the piece of equipment is\\n      powered and functioning or components that are required to remain on are\\n      powered. Primary power is applied to the piece of equipment and, as a\\n      minimum, the controller or logic portion of the piece of equipment is\\n      powered and functioning or components that are required to remain on are\\n      powered" ".\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2562),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3043,6 +3253,9 @@ static UA_StatusCode function_nodeset_130_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RapidSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value of a signal or calculation issued to adjust the feedrate of the\\n      axes associated with a \\mtmodel{Path} component when the axes, or a single\\n      axis, are being operated in a rapid positioning mode or method (rapid).\\n      The value of a signal or calculation issued to adjust the feedrate of a\\n      component or composition that is operating in a rapid positioning mode.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2572),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3065,6 +3278,9 @@ static UA_StatusCode function_nodeset_131_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WorkpieceSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "A physical object being or to be worked on with a tool or machine.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2616),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3087,6 +3303,9 @@ static UA_StatusCode function_nodeset_132_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RadialSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A reference to a radial type tool offset variable. A reference to a radial\\n      type tool offset variable.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2570),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3109,6 +3328,9 @@ static UA_StatusCode function_nodeset_133_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WorkingSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication that a piece of equipment is performing any activity. A\\n      piece of equipment performing any activity, the equipment is active and\\n      performing a function under load or not.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2614),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3131,6 +3353,9 @@ static UA_StatusCode function_nodeset_134_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RemainingSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The remaining amount of the type specified. Remaining measure of an object\\n      or an action.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2576),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3153,6 +3378,9 @@ static UA_StatusCode function_nodeset_135_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WeightSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A physical object's relative mass. The total weight of the Cutting\\n      Tool in grams. The force exerted by the mass of the Cutting Tool. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2612),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3175,6 +3403,9 @@ static UA_StatusCode function_nodeset_136_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ManualUnclampSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the state of an operator controlled interlock that can\\n      inhibit the ability to initiate an unclamp action of an electronically\\n      controlled chuck.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2538),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3197,6 +3428,9 @@ static UA_StatusCode function_nodeset_137_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BScaleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "B Scale weighting factor for the measurement of sound level.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2496),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3219,6 +3453,9 @@ static UA_StatusCode function_nodeset_138_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VickersSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A scale to measure the resistance to deformation of a surface. A scale to\\n      measure the resistance to deformation of a surface.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2610),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3241,6 +3478,9 @@ static UA_StatusCode function_nodeset_139_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "JobSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value of a signal or calculation issued to adjust the feedrate of the\\n      axes associated with a Path component when the axes, or a single axis, are\\n      being operated in a manual mode or method (jogging).\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2518),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3263,6 +3503,9 @@ static UA_StatusCode function_nodeset_140_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AuxiliarySubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Example: When multiple locations on a piece of bar stock are referenced as\\n      the indication for the \\mtmodel{END_OF_BAR}, the additional location(s)\\n      MUST be designated as \\mtmodel{AUXILIARY} indication(s) for the\\n      \\mtmodel{END_OF_BAR}. When multiple locations on a piece of bar stock are\\n      referenced as the indication for the endofbar event, the additional\\n      location(s) must be designated as auxiliary subtype indication(s) for the\\n      endofbar even" "t. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2490),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3285,6 +3528,9 @@ static UA_StatusCode function_nodeset_141_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FixtureSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Fixture denotes a specifc type of a piece of equipment.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2514),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3307,6 +3553,9 @@ static UA_StatusCode function_nodeset_142_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "IncrementalSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A small change which could be either positive or negative in a Type's\\n      value or function. Example: The position of a block of program code\\n      relative to the occurrence of the last \\mtmodel{LINE_LABEL} encountered in\\n      the control program. The position of a block of program code relative to\\n      the occurrence of the last linelabel event encountered in the control\\n      program.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2516),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3329,6 +3578,9 @@ static UA_StatusCode function_nodeset_143_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DryRunSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A setting or operator selection used to execute a test mode to confirm the\\n      execution of machine functions.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2510),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3351,6 +3603,9 @@ static UA_StatusCode function_nodeset_144_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DScaleSubClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "D Scale weighting factor for the measurement of sound level.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2512),
 UA_NODEID_NUMERIC(ns[1], 2476),
@@ -3375,6 +3630,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2618);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTAssetEventType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The asset events have an additional attribute regarding the asset change\\n      or removal identifier and the type of asset that is being reported.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2621),
 UA_NODEID_NUMERIC(ns[0], 63),
@@ -3402,6 +3660,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2751),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3430,6 +3691,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2753),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3458,6 +3722,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2752),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3486,6 +3753,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2754),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3514,6 +3784,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2757),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3542,6 +3815,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2756),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3570,6 +3846,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2759),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3598,6 +3877,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2758),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3626,6 +3908,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2755),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -3651,6 +3936,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 28);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTControlledVocabEventType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      All \\glspl{MTDataItem} with \\gls{category} \\mtmodel{EVENT} having\\n      Controlled Vocabularies (Enumerations) will be added as sub-types of this\\n      type which is mapped to the OPC/UA MultiStateValueDiscreteType. Otherwise,\\n      either \\mtmodel{MTString} or \\mtmodel{MTNumeric} will be used. All\\n      subtypes are direct representations of the MTConnect equivalent elements\\n      that can be found in the MTConnect Part 3 \\cite{MTCPart3} documents.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2626),
 UA_NODEID_NUMERIC(ns[0], 2376),
@@ -3678,6 +3966,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2778),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3706,6 +3997,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2779),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3734,6 +4028,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "ValueAsText");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      All \\glspl{MTDataItem} with \\gls{category} \\mtmodel{EVENT} having\\n      Controlled Vocabularies (Enumerations) will be added as sub-types of this\\n      type which is mapped to the OPC/UA MultiStateValueDiscreteType. Otherwise,\\n      either \\mtmodel{MTString} or \\mtmodel{MTNumeric} will be used. All\\n      subtypes are direct representations of the MTConnect equivalent elements\\n      that can be found in the MTConnect Part 3 \\cite{MTCPart3} documents.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3090),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3762,6 +4059,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2772),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3790,6 +4090,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2773),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3818,6 +4121,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2771),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3846,6 +4152,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2776),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3874,6 +4183,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2777),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3902,6 +4214,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2774),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3930,6 +4245,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2775),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -3953,6 +4271,9 @@ static UA_StatusCode function_nodeset_166_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTDescriptionType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2053),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -3980,6 +4301,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SerialNumber");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2055),
 UA_NODEID_NUMERIC(ns[1], 2053),
@@ -4008,6 +4332,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Station");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2054),
 UA_NODEID_NUMERIC(ns[1], 2053),
@@ -4036,6 +4363,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Data");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2057),
 UA_NODEID_NUMERIC(ns[1], 2053),
@@ -4064,6 +4394,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Manufacturer");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2056),
 UA_NODEID_NUMERIC(ns[1], 2053),
@@ -4087,6 +4420,9 @@ static UA_StatusCode function_nodeset_171_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTChannelType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2059),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -4114,6 +4450,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 294);
 attr.displayName = UA_LOCALIZEDTEXT("", "NextCalibrationDate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2064),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4142,6 +4481,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "CalibrationInitials");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2065),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4170,6 +4512,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTDescription");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2062),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4198,6 +4543,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 294);
 attr.displayName = UA_LOCALIZEDTEXT("", "CalibrationDate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2063),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4226,6 +4574,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 6);
 attr.displayName = UA_LOCALIZEDTEXT("", "Number");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2060),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4254,6 +4605,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A Channel of a sensor. See ChannelType in type specifications. channel\\n      represents each sensing element connected to a sensor unit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2061),
 UA_NODEID_NUMERIC(ns[1], 2059),
@@ -4278,6 +4632,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTComponentType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2021),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -4300,6 +4657,9 @@ static UA_StatusCode function_nodeset_179_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxesType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Organizes parts of the device that perform linear or rotational motion An\\n      XML container used to organize the structural element of a piece of\\n      equipment that perform linear or rotational motion.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2078),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4322,6 +4682,9 @@ static UA_StatusCode function_nodeset_180_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LinearType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the movement of a physical piece of equipment, or a portion of the\\n      equipment, in a straight line. A linear axis represents the movement of a\\n      physical piece of equipment, or a portion of the equipment, in a straight\\n      line. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2110),
 UA_NODEID_NUMERIC(ns[1], 2078),
@@ -4344,6 +4707,9 @@ static UA_StatusCode function_nodeset_181_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RotaryType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      rotary movement of a physical piece of equipment or a portion of the\\n      equipment. A rotary axis represents any non-linear or rotary movement of a\\n      physical piece of equipment or a portion of the equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2132),
 UA_NODEID_NUMERIC(ns[1], 2078),
@@ -4366,6 +4732,9 @@ static UA_StatusCode function_nodeset_182_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ChuckType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      provides the information about a mechanism that holds a part or stock\\n      material in place Chuck is an XML container that provides the information\\n      about a mechanism that holds a part or stock material in place.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2086),
 UA_NODEID_NUMERIC(ns[1], 2132),
@@ -4388,6 +4757,9 @@ static UA_StatusCode function_nodeset_183_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AuxiliariesType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      representing functional sub-systems that provide supplementary or extended\\n      capabilities for a piece of equipment, but they are not required for the\\n      basic operation of the equipment An XML container used to organize\\n      information for lower level elements representing functional sub-systems\\n      that provide supplementary or extended capabilities for a piece of\\n      equipment, but they are not required for the basic operation of the\\n      equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2076),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4410,6 +4782,9 @@ static UA_StatusCode function_nodeset_184_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SensorType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a piece of equipment that responds to a physical\\n      stimulus and transmits a resulting impulse or value from a sensing unit\\n      The sensor unit is modeled as a lower level component called sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2134),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4432,6 +4807,9 @@ static UA_StatusCode function_nodeset_185_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BarFeederType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a unit involved in delivering bar stock to a piece of equipment. barfeeder\\n      is an XML container that represents the information for a unit involved in\\n      delivering bar stock to a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2082),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4454,6 +4832,9 @@ static UA_StatusCode function_nodeset_186_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WasteDisposalType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a unit comprised of all the parts involved in removing\\n      manufacturing byproducts from a piece of equipment wastedisposal is an XML\\n      container that represents the information for a unit comprised of all the\\n      parts involved in removing manufacturing byproducts from a piece of\\n      equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2142),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4476,6 +4857,9 @@ static UA_StatusCode function_nodeset_187_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolingDeliveryType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a unit involved in managing, positioning, storing, and delivering tooling\\n      within a piece of equipment. toolingdelivery is an XML container that\\n      represents the information for a unit involved in managing, positioning,\\n      storing, and delivering tooling within a piece of equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2140),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4498,6 +4882,9 @@ static UA_StatusCode function_nodeset_188_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EnvironmentalType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a unit or function involved in monitoring, managing,\\n      or conditioning the environment around or within a piece of equipment.\\n      environmental is an XML container that represents the information for a\\n      unit or function involved in monitoring, managing, or conditioning the\\n      environment around or within a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2102),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4520,6 +4907,9 @@ static UA_StatusCode function_nodeset_189_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LoaderType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a unit comprised of all the parts involved in moving\\n      and distributing materials, parts, tooling, and other items to or from a\\n      piece of equipment loader is an XML container that represents the\\n      information for a unit comprised of all the parts involved in moving and\\n      distributing materials, parts, tooling, and other items to or from a piece\\n      of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2112),
 UA_NODEID_NUMERIC(ns[1], 2076),
@@ -4542,6 +4932,9 @@ static UA_StatusCode function_nodeset_190_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Compositions");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2043),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4565,6 +4958,9 @@ static UA_StatusCode function_nodeset_191_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Components");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2042),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4588,6 +4984,9 @@ static UA_StatusCode function_nodeset_192_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SystemsType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      major sub-systems that are permanently integrated into a piece of\\n      equipment An XML container used to organize information for lower level\\n      elements representing the major sub-systems that are permanently\\n      integrated into a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2138),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4610,6 +5009,9 @@ static UA_StatusCode function_nodeset_193_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "HydraulicType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      system comprised of all the parts involved in moving and distributing\\n      pressurized liquid throughout the piece of equipment. hydraulic is an XML\\n      container that represents the information for a system comprised of all\\n      the parts involved in moving and distributing pressurized liquid\\n      throughout the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2106),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4632,6 +5034,9 @@ static UA_StatusCode function_nodeset_194_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LubricationType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a system comprised of all the parts involved in distribution and\\n      management of fluids used to lubricate portions of the piece of equipment.\\n      lubrication is an XML container that represents the information for a\\n      system comprised of all the parts involved in distribution and management\\n      of fluids used to lubricate portions of the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2114),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4654,6 +5059,9 @@ static UA_StatusCode function_nodeset_195_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FeederType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a system that manages the delivery of materials within\\n      a piece of equipment. feeder is an XML container that represents the\\n      information for a system that manages the delivery of materials within a\\n      piece of equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2104),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4676,6 +5084,9 @@ static UA_StatusCode function_nodeset_196_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ElectricType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      represents the information for the main power supply for device piece of\\n      equipment and the distribution of that power throughout the equipment.\\n      electric is an XML container that represents the information for the main\\n      power supply for device piece of equipment and the distribution of that\\n      power throughout the equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2098),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4698,6 +5109,9 @@ static UA_StatusCode function_nodeset_197_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EnclosureType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a structure used to contain or isolate a piece of equipment or area.\\n      enclosure is an XML container that represents the information for a\\n      structure used to contain or isolate a piece of equipment or area.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2100),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4720,6 +5134,9 @@ static UA_StatusCode function_nodeset_198_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CoolantType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a system comprised of all the parts involved in distribution and\\n      management of fluids that remove heat from a piece of equipment. coolant\\n      is an XML container that represents the information for a system comprised\\n      of all the parts involved in distribution and management of fluids that\\n      remove heat from a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2090),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4742,6 +5159,9 @@ static UA_StatusCode function_nodeset_199_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DielectricType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a system that manages a chemical mixture used in a manufacturing process\\n      being performed at that piece of equipment. dielectric is an XML container\\n      that represents the information for a system that manages a chemical\\n      mixture used in a manufacturing process being performed at that piece of\\n      equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2092),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4764,6 +5184,9 @@ static UA_StatusCode function_nodeset_200_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProcessPowerType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a power source associated with a piece of equipment\\n      that supplies energy to the manufacturing process separate from the\\n      Electric system processpower is an XML container that represents the\\n      information for a power source associated with a piece of equipment that\\n      supplies energy to the manufacturing process separate from the electric\\n      system.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2126),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4786,6 +5209,9 @@ static UA_StatusCode function_nodeset_201_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProtectiveType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for those functions that detect or prevent harm or damage\\n      to equipment or personnel. Protective is an XML container that represents\\n      the information for those functions that detect or prevent harm or damage\\n      to equipment or personnel.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2128),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4808,6 +5234,9 @@ static UA_StatusCode function_nodeset_202_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PneumaticType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      a system comprised of all the parts involved in moving and distributing\\n      pressurized gas throughout the piece of equipment. pneumatic is an XML\\n      container that represents the information for a system comprised of all\\n      the parts involved in moving and distributing pressurized gas throughout\\n      the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2124),
 UA_NODEID_NUMERIC(ns[1], 2138),
@@ -4830,6 +5259,9 @@ static UA_StatusCode function_nodeset_203_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ControllerType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      intelligent or computational function within a piece of equipment An XML\\n      container used to organize information about an intelligent or\\n      computational function within a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2088),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4852,6 +5284,9 @@ static UA_StatusCode function_nodeset_204_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PathType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      information for an independent operation or function within a\\n      \\mtuatype{ControllerType} path is an XML container that represents the\\n      information for an independent operation or function within a controller.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2120),
 UA_NODEID_NUMERIC(ns[1], 2088),
@@ -4874,6 +5309,9 @@ static UA_StatusCode function_nodeset_205_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "InterfacesType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An XML container that organizes information used to coordinate actions\\n      and activities between pieces of equipment that communicate information\\n      between each other. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2108),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -4896,6 +5334,9 @@ static UA_StatusCode function_nodeset_206_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BarFeederInterfaceType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      information used to coordinate the operations between a Bar Feeder and\\n      another piece of equipment barfeederinterface provides the set of\\n      information used to coordinate the operations between a Bar Feeder and\\n      another piece of equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2080),
 UA_NODEID_NUMERIC(ns[1], 2108),
@@ -4918,6 +5359,9 @@ static UA_StatusCode function_nodeset_207_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialHandlerInterfaceType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      set of information used to coordinate the operations between a piece of\\n      equipment and another associated piece of equipment used to automatically\\n      handle various types of materials or services associated with the original\\n      piece of equipment materialhandlerinterface provides the set of\\n      information used to coordinate the operations between a piece of equipment\\n      and another associated piece of equipment used to automatically handle\\n      various type" "s of materials or services associated with the original piece\\n      of equipment. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2116),
 UA_NODEID_NUMERIC(ns[1], 2108),
@@ -4940,6 +5384,9 @@ static UA_StatusCode function_nodeset_208_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DoorInterfaceType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      information used to coordinate the operations between two pieces of\\n      equipment, one of which controls the operation of a door doorinterface\\n      provides the set of information used to coordinate the operations between\\n      two pieces of equipment, one of which controls the operation of a door. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2094),
 UA_NODEID_NUMERIC(ns[1], 2108),
@@ -4962,6 +5409,9 @@ static UA_StatusCode function_nodeset_209_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ChuckInterfaceType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      information used to coordinate the operations between two pieces of\\n      equipment, one of which controls the operation of a chuck chuckinterface\\n      provides the set of information used to coordinate the operations between\\n      two pieces of equipment, one of which controls the operation of a chuck. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2084),
 UA_NODEID_NUMERIC(ns[1], 2108),
@@ -4984,6 +5434,9 @@ static UA_StatusCode function_nodeset_210_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DoorType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for a mechanical mechanism or closure that can cover, for\\n      example, a physical access portal into a piece of equipment door component\\n      is an XML container that represents the information for a mechanical\\n      mechanism or closure that can cover.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2096),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5006,6 +5459,9 @@ static UA_StatusCode function_nodeset_211_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ResourcesType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An XML container used to organize information for lower level elements\\n      representing types of items, materials, and personnel that support the\\n      operation of a piece of equipment or work to be performed at a location.\\n      resources also represents materials or other items consumed or transformed\\n      by a piece of equipment for production of parts or other types of goods.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2130),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5028,6 +5484,9 @@ static UA_StatusCode function_nodeset_212_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialsType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      information about materials or other items consumed or used by the piece\\n      of equipment for production of parts, materials, or other types of goods\\n      materials is an XML container that provides information about materials or\\n      other items consumed or used by the piece of equipment for production of\\n      parts, materials, or other types of goods.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2118),
 UA_NODEID_NUMERIC(ns[1], 2130),
@@ -5050,6 +5509,9 @@ static UA_StatusCode function_nodeset_213_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "StockType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for the material that is used in a manufacturing process\\n      and to which work is applied in a machine or piece of equipment to produce\\n      parts. stock is an XML container that represents the information for the\\n      material that is used in a manufacturing process and to which work is\\n      applied in a machine or piece of equipment to produce parts.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2136),
 UA_NODEID_NUMERIC(ns[1], 2118),
@@ -5072,6 +5534,9 @@ static UA_StatusCode function_nodeset_214_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PersonnelType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       personnel is an XML container that provides information about an\\n      individual or individuals who either control, support, or otherwise\\n      interface with a piece of equipment. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2122),
 UA_NODEID_NUMERIC(ns[1], 2130),
@@ -5094,6 +5559,9 @@ static UA_StatusCode function_nodeset_215_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ActuatorType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      the information for an apparatus for moving or controlling a mechanism or\\n      system Redefined as a piece of equipment with the ability to be\\n      represented as a lower level component of a parent component element or as\\n      a composition element. See actuator type\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2074),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5121,6 +5589,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2023),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5149,6 +5620,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2022),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5177,6 +5651,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Uuid");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2025),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5205,6 +5682,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2024),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5233,6 +5713,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleInterval");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2027),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5261,6 +5744,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2026),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5284,6 +5770,9 @@ static UA_StatusCode function_nodeset_222_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTDeviceType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      See DeviceType.tex. The primary container element for each piece of\\n      equipment. device is organized within the devices container.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2015),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5311,6 +5800,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Iso841Class");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      See DeviceType.tex. The primary container element for each piece of\\n      equipment. device is organized within the devices container.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2017),
 UA_NODEID_NUMERIC(ns[1], 2015),
@@ -5339,6 +5831,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Version");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      See DeviceType.tex. The primary container element for each piece of\\n      equipment. device is organized within the devices container.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2016),
 UA_NODEID_NUMERIC(ns[1], 2015),
@@ -5367,6 +5862,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Uuid");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      See DeviceType.tex. The primary container element for each piece of\\n      equipment. device is organized within the devices container.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3669),
 UA_NODEID_NUMERIC(ns[1], 2015),
@@ -5395,6 +5893,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      See DeviceType.tex. The primary container element for each piece of\\n      equipment. device is organized within the devices container.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3668),
 UA_NODEID_NUMERIC(ns[1], 2015),
@@ -5418,6 +5919,9 @@ static UA_StatusCode function_nodeset_227_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Description");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2028),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -5446,6 +5950,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SerialNumber");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2738),
 UA_NODEID_NUMERIC(ns[1], 2028),
@@ -5474,6 +5981,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Manufacturer");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2739),
 UA_NODEID_NUMERIC(ns[1], 2028),
@@ -5502,6 +6012,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Station");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2737),
 UA_NODEID_NUMERIC(ns[1], 2028),
@@ -5530,6 +6043,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Data");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Component Description. See the DescriptionType in the\\n      type-specifications. An XML element that can contain any descriptive\\n      content.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2740),
 UA_NODEID_NUMERIC(ns[1], 2028),
@@ -5605,6 +6121,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTStringEventType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      All data items with \\gls{category} \\uamodel{EVENT} where the data is\\n      freeform text. The data type will be set to String for all the sub-types.\\n      All extended type, regardless of controlled vocabularies, will use this\\n      base type unless proprietary enumerations are added to the nodeset as\\n      required by the builtin state event types inherited from\\n      \\mtmodel{MTControlledVocabEventType} (see\\n      \\ref{type:MTControlledVocabEventType}).\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2433),
 UA_NODEID_NUMERIC(ns[0], 63),
@@ -5632,6 +6151,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2874),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5660,6 +6182,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2875),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5688,6 +6213,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2867),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5716,6 +6244,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2871),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5744,6 +6275,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2870),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5772,6 +6306,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2873),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5800,6 +6337,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2872),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5828,6 +6368,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2868),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5856,6 +6399,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2869),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -5880,6 +6426,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTConfigurationType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The abstract \\mtuatype{MTConfigurationType} currently has only one\\n      sub-type, \\\\ \\mtuatype{MTSensorConfigurationType}. In the future, the\\n      configurations will also contain component and device configuration\\n      information as sub-types. An XML element that contains technical\\n      information about a piece of equipment describing its physical layout or\\n      functional characteristics.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2044),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -5902,6 +6451,9 @@ static UA_StatusCode function_nodeset_245_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSensorConfigurationType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2046),
 UA_NODEID_NUMERIC(ns[1], 2044),
@@ -5929,6 +6481,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 294);
 attr.displayName = UA_LOCALIZEDTEXT("", "CalibrationDate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2048),
 UA_NODEID_NUMERIC(ns[1], 2046),
@@ -5957,6 +6512,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 294);
 attr.displayName = UA_LOCALIZEDTEXT("", "NextCalibrationDate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2049),
 UA_NODEID_NUMERIC(ns[1], 2046),
@@ -5985,6 +6543,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "FirwareVersion");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2047),
 UA_NODEID_NUMERIC(ns[1], 2046),
@@ -6013,6 +6574,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "CalibrationInitials");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2050),
 UA_NODEID_NUMERIC(ns[1], 2046),
@@ -6036,6 +6600,9 @@ static UA_StatusCode function_nodeset_250_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Channels");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An MTConnect Sensor Configuration associated with the Component. See\\n      SensorConfigurationType in type-specifications. An element that can\\n      contain descriptive content defining the configuration information for\\n      sensor.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2052),
 UA_NODEID_NUMERIC(ns[1], 2046),
@@ -6059,6 +6626,9 @@ static UA_StatusCode function_nodeset_251_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Configuration");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base \\gls{MTComponent} Type from which all MTConnect Components are\\n      derived. The component types will be created once for all\\n      \\gls{MTComponent} \\glspl{Object} of that type based on the \\gls{QName} of\\n      the MTConnect XML element. The Component Objects will be created and\\n      inserted into the \\mtmodel{Components} folder with a \\gls{BrowseName} of\\n      the Component \\gls{QName} and the \\mtmodel{name} element if specified\\n      surrounded by squar" "e brackets, \\texttt{[]}. For example if the MTConnect\\n      Element is: \\xml{<Linear name='X'>...</...>} The OPC\\n      UA Object with \\gls{BrowseName} \\xml{Linear[X]} will be created with the\\n      \\uamodel{HasTypeDefinition} referencing the \\mtmodel{Linear} OPC UA\\n      \\gls{Type}. The meta data for the component and its relationships are\\n      static. The dynamic data will be represented using the \\cite{UAPart8}. An\\n      abstract XML element. Replaced in the XML document b" "y types of component\\n      elements representing physical parts and logical functions of a piece of\\n      equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2029),
 UA_NODEID_NUMERIC(ns[1], 2021),
@@ -6084,6 +6654,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2637);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTThreeSpaceSampleType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special data item type that represents a three space coordinate. It uses\\n      a data type with three fields, X, Y, and Z, where the coordinates are\\n      given in millimeters. The EngineeringUnits will always be set to MMT in\\n      the UNECE convetion.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2641),
 UA_NODEID_NUMERIC(ns[0], 2365),
@@ -6111,6 +6684,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 887);
 attr.displayName = UA_LOCALIZEDTEXT("", "EngineeringUnits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special data item type that represents a three space coordinate. It uses\\n      a data type with three fields, X, Y, and Z, where the coordinates are\\n      given in millimeters. The EngineeringUnits will always be set to MMT in\\n      the UNECE convetion.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2642),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6139,6 +6715,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 290);
 attr.displayName = UA_LOCALIZEDTEXT("", "Duration");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3673),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6167,6 +6746,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2635);
 attr.displayName = UA_LOCALIZEDTEXT("", "CoordinateSystem");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2898),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6195,6 +6777,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "InitialValue");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2899),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6223,6 +6808,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "MinimumDeltaFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2902),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6251,6 +6839,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 4);
 attr.displayName = UA_LOCALIZEDTEXT("", "SignificantDigits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2895),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6279,6 +6870,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2659);
 attr.displayName = UA_LOCALIZEDTEXT("", "Statistic");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2896),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6307,6 +6901,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeUnits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2897),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6335,6 +6932,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTrigger");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2900),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6363,6 +6963,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Units");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2901),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6391,6 +6994,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2889),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6419,6 +7025,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2888),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6447,6 +7056,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2883),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6475,6 +7087,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2882),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6503,6 +7118,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2881),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6531,6 +7149,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2887),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6559,6 +7180,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2886),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6587,6 +7211,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2885),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6615,6 +7242,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2884),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6643,6 +7273,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTriggeredReason");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3677),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -6717,6 +7350,9 @@ UA_String_init(variablenode_ns_1_i_2910_variant_DataContents);
 *variablenode_ns_1_i_2910_variant_DataContents = UA_STRING_ALLOC("ThreeSpaceSampleDataType");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2910_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "ThreeSpaceSampleDataType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2910),
 UA_NODEID_NUMERIC(ns[1], 2729),
@@ -6756,6 +7392,9 @@ variablenode_ns_1_i_2911_variant_DataContents->length = 325;
 variablenode_ns_1_i_2911_variant_DataContents->data = (UA_Byte *)(void*)(uintptr_t)variablenode_ns_1_i_2911_variant_DataContents_byteArray;
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2911_variant_DataContents, &UA_TYPES[UA_TYPES_BYTESTRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "DictionaryFragment");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2911),
 UA_NODEID_NUMERIC(ns[1], 2910),
@@ -6874,7 +7513,6 @@ UA_QUALIFIEDNAME(ns[0], "NamespaceUri"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_String_delete(variablenode_ns_1_i_2731_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2731), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -6908,7 +7546,6 @@ UA_QUALIFIEDNAME(ns[0], "Deprecated"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_Boolean_delete(variablenode_ns_1_i_2732_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2732), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -6935,6 +7572,9 @@ UA_String_init(variablenode_ns_1_i_2746_variant_DataContents);
 *variablenode_ns_1_i_2746_variant_DataContents = UA_STRING_ALLOC("AssetEventDataType");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2746_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "AssetEventDataType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2746),
 UA_NODEID_NUMERIC(ns[1], 2729),
@@ -6974,6 +7614,9 @@ variablenode_ns_1_i_2747_variant_DataContents->length = 281;
 variablenode_ns_1_i_2747_variant_DataContents->data = (UA_Byte *)(void*)(uintptr_t)variablenode_ns_1_i_2747_variant_DataContents_byteArray;
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2747_variant_DataContents, &UA_TYPES[UA_TYPES_BYTESTRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "DictionaryFragment");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2747),
 UA_NODEID_NUMERIC(ns[1], 2746),
@@ -6999,6 +7642,9 @@ static UA_StatusCode function_nodeset_282_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTConstraintType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2647),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -7021,6 +7667,9 @@ static UA_StatusCode function_nodeset_283_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2760),
 UA_NODEID_NUMERIC(ns[1], 2621),
@@ -7053,6 +7702,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2761),
 UA_NODEID_NUMERIC(ns[1], 2760),
@@ -7081,6 +7733,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2762),
 UA_NODEID_NUMERIC(ns[1], 2760),
@@ -7109,6 +7764,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2763),
 UA_NODEID_NUMERIC(ns[1], 2760),
@@ -7137,6 +7795,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2764),
 UA_NODEID_NUMERIC(ns[1], 2760),
@@ -7160,6 +7821,9 @@ static UA_StatusCode function_nodeset_288_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2876),
 UA_NODEID_NUMERIC(ns[1], 2433),
@@ -7192,6 +7856,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2877),
 UA_NODEID_NUMERIC(ns[1], 2876),
@@ -7220,6 +7887,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2878),
 UA_NODEID_NUMERIC(ns[1], 2876),
@@ -7248,6 +7918,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2879),
 UA_NODEID_NUMERIC(ns[1], 2876),
@@ -7276,6 +7949,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2880),
 UA_NODEID_NUMERIC(ns[1], 2876),
@@ -7304,6 +7980,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2650),
 UA_NODEID_NUMERIC(ns[1], 2647),
@@ -7332,6 +8011,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2651),
 UA_NODEID_NUMERIC(ns[1], 2647),
@@ -7355,6 +8037,9 @@ static UA_StatusCode function_nodeset_295_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2890),
 UA_NODEID_NUMERIC(ns[1], 2641),
@@ -7387,6 +8072,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2891),
 UA_NODEID_NUMERIC(ns[1], 2890),
@@ -7415,6 +8103,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2892),
 UA_NODEID_NUMERIC(ns[1], 2890),
@@ -7443,6 +8134,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2893),
 UA_NODEID_NUMERIC(ns[1], 2890),
@@ -7471,6 +8165,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2894),
 UA_NODEID_NUMERIC(ns[1], 2890),
@@ -7499,6 +8196,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2649),
 UA_NODEID_NUMERIC(ns[1], 2647),
@@ -7531,6 +8231,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2648),
 UA_NODEID_NUMERIC(ns[1], 2647),
@@ -7554,6 +8257,9 @@ static UA_StatusCode function_nodeset_302_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2780),
 UA_NODEID_NUMERIC(ns[1], 2626),
@@ -7586,6 +8292,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2781),
 UA_NODEID_NUMERIC(ns[1], 2780),
@@ -7614,6 +8323,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2782),
 UA_NODEID_NUMERIC(ns[1], 2780),
@@ -7642,6 +8354,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2783),
 UA_NODEID_NUMERIC(ns[1], 2780),
@@ -7670,6 +8385,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2784),
 UA_NODEID_NUMERIC(ns[1], 2780),
@@ -7695,6 +8413,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 26);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTNumericEventType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      All data items with category \\gls{MTEvent} and a numeric value. These are\\n      usually counters for parts and lines. Currently only builtin types that\\n      are known to be integers will be sub-typed from this type. Extended types\\n      will be subtyped from the \\mtuatype{MTStringEventType}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2438),
 UA_NODEID_NUMERIC(ns[0], 2365),
@@ -7722,6 +8443,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2810),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7750,6 +8474,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "InitialValue");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2823),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7778,6 +8505,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2811),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7806,6 +8536,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeUnits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2821),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7834,6 +8567,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2808),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7862,6 +8598,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTriggeredReason");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3675),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7885,6 +8624,9 @@ static UA_StatusCode function_nodeset_314_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2814),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -7913,6 +8655,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2818),
 UA_NODEID_NUMERIC(ns[1], 2814),
@@ -7945,6 +8690,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2815),
 UA_NODEID_NUMERIC(ns[1], 2814),
@@ -7973,6 +8721,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2816),
 UA_NODEID_NUMERIC(ns[1], 2814),
@@ -8001,6 +8752,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2817),
 UA_NODEID_NUMERIC(ns[1], 2814),
@@ -8029,6 +8783,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2809),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8057,6 +8814,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2659);
 attr.displayName = UA_LOCALIZEDTEXT("", "Statistic");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2820),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8085,6 +8845,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 4);
 attr.displayName = UA_LOCALIZEDTEXT("", "SignificantDigits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2819),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8113,6 +8876,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2812),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8141,6 +8907,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2813),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8169,6 +8938,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 290);
 attr.displayName = UA_LOCALIZEDTEXT("", "Duration");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3671),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8197,6 +8969,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "MinimumDeltaFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2826),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8225,6 +9000,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Units");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2825),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8253,6 +9031,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTrigger");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2824),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8281,6 +9062,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2805),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8309,6 +9093,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2635);
 attr.displayName = UA_LOCALIZEDTEXT("", "CoordinateSystem");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2822),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8337,6 +9124,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2807),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8365,6 +9155,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2806),
 UA_NODEID_NUMERIC(ns[1], 2438),
@@ -8422,7 +9215,6 @@ UA_NODEID_NUMERIC(ns[0], 46),
 UA_QUALIFIEDNAME(ns[0], "StaticStringNodeIdPattern"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3638), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8456,7 +9248,6 @@ UA_QUALIFIEDNAME(ns[0], "NamespaceUri"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_String_delete(variablenode_ns_1_i_3632_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3632), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8479,7 +9270,7 @@ attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 UA_String *variablenode_ns_1_i_3633_variant_DataContents =  UA_String_new();
 if (!variablenode_ns_1_i_3633_variant_DataContents) return UA_STATUSCODE_BADOUTOFMEMORY;
 UA_String_init(variablenode_ns_1_i_3633_variant_DataContents);
-*variablenode_ns_1_i_3633_variant_DataContents = UA_STRING_ALLOC("2.00");
+*variablenode_ns_1_i_3633_variant_DataContents = UA_STRING_ALLOC("2.0");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_3633_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "NamespaceVersion");
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
@@ -8490,7 +9281,6 @@ UA_QUALIFIEDNAME(ns[0], "NamespaceVersion"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_String_delete(variablenode_ns_1_i_3633_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3633), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8525,7 +9315,6 @@ UA_NODEID_NUMERIC(ns[0], 46),
 UA_QUALIFIEDNAME(ns[0], "StaticNodeIdTypes"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3636), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8560,7 +9349,6 @@ UA_NODEID_NUMERIC(ns[0], 46),
 UA_QUALIFIEDNAME(ns[0], "StaticNumericNodeIdRange"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3637), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8594,7 +9382,6 @@ UA_QUALIFIEDNAME(ns[0], "NamespacePublicationDate"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_DateTime_delete(variablenode_ns_1_i_3634_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3634), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8628,7 +9415,6 @@ UA_QUALIFIEDNAME(ns[0], "IsNamespaceSubset"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_Boolean_delete(variablenode_ns_1_i_3635_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3635), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -8646,6 +9432,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2653);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTMessageType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The message is a sub-type of the \\uaterm{DataVariableType} using the\\n      \\mtuatype{MessageDataType} to represent the values for \\mtterm{NativeCode}\\n      and \\mtterm{Text} of the message from the \\gls{CDATA} of the MTConnect\\n      Streams message. Any text string of information to be transferred from a\\n      piece of equipment to a client software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2471),
 UA_NODEID_NUMERIC(ns[0], 63),
@@ -8668,6 +9457,9 @@ static UA_StatusCode function_nodeset_341_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2800),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8696,6 +9488,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2804),
 UA_NODEID_NUMERIC(ns[1], 2800),
@@ -8724,6 +9519,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2802),
 UA_NODEID_NUMERIC(ns[1], 2800),
@@ -8752,6 +9550,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2803),
 UA_NODEID_NUMERIC(ns[1], 2800),
@@ -8784,6 +9585,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2801),
 UA_NODEID_NUMERIC(ns[1], 2800),
@@ -8812,6 +9616,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2798),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8840,6 +9647,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2799),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8868,6 +9678,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2796),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8896,6 +9709,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2797),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8924,6 +9740,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2794),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8952,6 +9771,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2795),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -8980,6 +9802,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2792),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -9008,6 +9833,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2793),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -9036,6 +9864,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2791),
 UA_NODEID_NUMERIC(ns[1], 2471),
@@ -9059,6 +9890,9 @@ static UA_StatusCode function_nodeset_355_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTConditionEventType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 4326),
 UA_NODEID_NUMERIC(ns[0], 2782),
@@ -9086,6 +9920,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "DataItemId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4327),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9114,6 +9951,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 21);
 attr.displayName = UA_LOCALIZEDTEXT("", "ActiveState");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4336),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9142,6 +9982,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeCode");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4331),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9170,6 +10013,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4330),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9198,6 +10044,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2668);
 attr.displayName = UA_LOCALIZEDTEXT("", "Qualifier");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4333),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9226,6 +10075,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeSeverity");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4332),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9254,6 +10106,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2669);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSeverity");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4328),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9282,6 +10137,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The condition type is a derived from the UA \\uamodel{ContitionType}. When\\n      the \\mtmodel{Warning} or \\mtmodel{Fault} state occurs, an\\n      \\mtuatype{MTConditionEventType} \\uamodel{Event} is created and with the\\n      \\mtmodel{ActiveState} set to \\uamodel{True} and \\uamodel{Retain} set to\\n      \\uamodel{True}. The severity is used to represent the MTConnect condition\\n      states of Warning and Fault with the values of 500 and 1000 respectively.\\n      A new \\ua" "model{NodeId} will be created for every unique instance of the\\n      MTConnect \\mtmodel{Condition} reported. When the \\mtmodel{Condition} goes\\n      back to Normal, the \\mtmodel{ActiveState} is set to \\uamodel{False} and\\n      \\uamodel{Retain} is also set to \\uamodel{False} with the \\uamodel{NodeId}\\n      of the associated \\mtmodel{Condition}. If multiple MTConnect\\n      \\mtmodel{Condition}s have been cleared at the same time, all currently\\n      active \\mtuatype{MTConditio" "nEventType} \\uamodel{Event}s will need to be\\n      created as inactive. The \\mtuatype{MTConditionEventType} must set the\\n      \\uamodel{BaseEvent} \\uamodel{SourceNode} to the related\\n      \\mtuatype{MTConditionType} that represents the meta-data for this\\n      Condition. The \\mtuatype{MTConditionEventType} will never be instantiated\\n      in the \\uaterm{AddressSpace} as an \\uamodel{Object}. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 4329),
 UA_NODEID_NUMERIC(ns[1], 4326),
@@ -9305,6 +10163,9 @@ static UA_StatusCode function_nodeset_364_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTConditionType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An \\mtmodel{MTConditionType} instance will be created for event MTConnect\\n      \\gls{MTDataItem} with a \\gls{category} of \\mtmodel{CONDITION}. The\\n      \\gls{BrowseName} of the condition uses the same naming convention as the\\n      MTConnect \\gls{MTDataItem} types with \\gls{MTCondition} appended as a\\n      suffix. For example the condition with \\gls{type} of \\mtmodel{TEMPERATURE}\\n      will have the browse name of \\mtmodel{TemperatureCondition} as opposed to\\n      " "the \\mtuatype{MTSampleType} of \\mtmodel{Temperature}. An XML element which\\n      provides the information and data reported from a piece of equipment for\\n      those dataitem elements defined with a category attribute of condition\\n      category in the mtconnectdevices document.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2660),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -9332,6 +10193,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2921),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9360,6 +10224,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2920),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9388,6 +10255,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2923),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9416,6 +10286,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2922),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9439,6 +10312,9 @@ static UA_StatusCode function_nodeset_369_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2924),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9471,6 +10347,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2925),
 UA_NODEID_NUMERIC(ns[1], 2924),
@@ -9499,6 +10378,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2926),
 UA_NODEID_NUMERIC(ns[1], 2924),
@@ -9527,6 +10409,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2927),
 UA_NODEID_NUMERIC(ns[1], 2924),
@@ -9555,6 +10440,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2928),
 UA_NODEID_NUMERIC(ns[1], 2924),
@@ -9583,6 +10471,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2918),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9611,6 +10502,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2919),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9639,6 +10533,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2915),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9667,6 +10564,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2916),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -9695,6 +10595,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2917),
 UA_NODEID_NUMERIC(ns[1], 2660),
@@ -10014,6 +10917,9 @@ UA_String_init(variablenode_ns_1_i_2749_variant_DataContents);
 *variablenode_ns_1_i_2749_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='AssetEventDataType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2749_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "AssetEventDataType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A special \\gls{Variable} data type for asset change with a\\n      \\mtmodel{AssetType} and \\mtmodel{AssetId}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2749),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10119,6 +11025,9 @@ UA_String_init(variablenode_ns_1_i_2942_variant_DataContents);
 *variablenode_ns_1_i_2942_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='MTSeverityDataType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2942_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSeverityDataType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2942),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10189,6 +11098,9 @@ UA_String_init(variablenode_ns_1_i_2770_variant_DataContents);
 *variablenode_ns_1_i_2770_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='MTCategoryType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2770_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTCategoryType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Represents the \\gls{category} attribute of the MTConnect \\gls{MTDataItem}.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2770),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10224,6 +11136,9 @@ UA_String_init(variablenode_ns_1_i_2832_variant_DataContents);
 *variablenode_ns_1_i_2832_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='MTRepresentationType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2832_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTRepresentationType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{representation} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2832),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10336,7 +11251,6 @@ UA_QUALIFIEDNAME(ns[0], "Deprecated"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_Boolean_delete(variablenode_ns_1_i_2736_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2736), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -10398,6 +11312,9 @@ UA_String_init(variablenode_ns_1_i_2790_variant_DataContents);
 *variablenode_ns_1_i_2790_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='MTCoordinateSystemType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2790_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTCoordinateSystemType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the \\mtmodel{coordinateSystem} attribute of the MTConnect\\n      \\gls{MTDataItem}.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2790),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10475,7 +11392,6 @@ UA_QUALIFIEDNAME(ns[0], "NamespaceUri"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 UA_String_delete(variablenode_ns_1_i_2735_variant_DataContents);
-retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2735), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
 return retVal;
 }
 
@@ -10677,6 +11593,9 @@ UA_String_init(variablenode_ns_1_i_2838_variant_DataContents);
 *variablenode_ns_1_i_2838_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='MTResetTriggerType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2838_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTResetTriggerType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These need to become \\uamodel{Good_} status code in OPC UA. resettrigger\\n      is an optional XML element that identifies the type of event that may\\n      cause a reset to occur. It is additional information regarding the meaning\\n      of the data that establishes an understanding of the time frame that the\\n      data represents so that the data may be correctly understood by a client\\n      software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2838),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10712,6 +11631,9 @@ UA_String_init(variablenode_ns_1_i_2913_variant_DataContents);
 *variablenode_ns_1_i_2913_variant_DataContents = UA_STRING_ALLOC("//xs:element[@name='ThreeSpaceSampleDataType']");
 UA_Variant_setScalar(&attr.value, variablenode_ns_1_i_2913_variant_DataContents, &UA_TYPES[UA_TYPES_STRING]);
 attr.displayName = UA_LOCALIZEDTEXT("", "ThreeSpaceSampleDataType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents a position in a three space coordinate system. The positions\\n      must be given in millimeters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2913),
 UA_NODEID_NUMERIC(ns[1], 2733),
@@ -10808,6 +11730,9 @@ UA_VariableTypeAttributes attr = UA_VariableTypeAttributes_default;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 26);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSampleType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Data Items with category \\mtmodel{SAMPLE}. The simplest mapping since all\\n      these types are floating point numeric data and comply with the\\n      \\uamodel{AnalogUnitType} from \\cite{UAPart8} Amendment 1. In ammendment 1,\\n      the \\uamodel{EURange} is optional. \\uamodel{EngineeringUnits} for all\\n      \\mtuatype{MTSampleType} Data Items. The \\uamodel{EURange} will becreated\\n      if the \\mtmodel{Constraints} element exists and both \\mtmodel{Maximum} and\\n      \\m" "tmodel{Minimum} values are given. An XML element that provides the\\n      information and data reported from a piece of equipment for those dataitem\\n      elements defined with a category attribute of sample category in the\\n      mtconnectdevices document. \\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLETYPE,
 UA_NODEID_NUMERIC(ns[1], 2429),
 UA_NODEID_NUMERIC(ns[0], 17497),
@@ -10835,6 +11760,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "PeriodFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2847),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -10863,6 +11791,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 4);
 attr.displayName = UA_LOCALIZEDTEXT("", "SignificantDigits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2853),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -10891,6 +11822,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2659);
 attr.displayName = UA_LOCALIZEDTEXT("", "Statistic");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2854),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -10919,6 +11853,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "NativeUnits");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2855),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -10947,6 +11884,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2635);
 attr.displayName = UA_LOCALIZEDTEXT("", "CoordinateSystem");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2856),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -10975,6 +11915,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "InitialValue");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2857),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11003,6 +11946,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTrigger");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2858),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11031,6 +11977,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Units");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2859),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11059,6 +12008,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 11);
 attr.displayName = UA_LOCALIZEDTEXT("", "SampleRate");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2845),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11087,6 +12039,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "SourceData");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2844),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11115,6 +12070,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSubTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2843),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11143,6 +12101,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2842),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11171,6 +12132,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2634);
 attr.displayName = UA_LOCALIZEDTEXT("", "Category");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2841),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11199,6 +12163,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2839),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11222,6 +12189,9 @@ static UA_StatusCode function_nodeset_425_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectAttributes attr = UA_ObjectAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "Constraints");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECT,
 UA_NODEID_NUMERIC(ns[1], 2848),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11254,6 +12224,9 @@ arrayDimensions[0] = 0;
 attr.arrayDimensions = &arrayDimensions[0];
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Values");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2849),
 UA_NODEID_NUMERIC(ns[1], 2848),
@@ -11282,6 +12255,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Maximum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2851),
 UA_NODEID_NUMERIC(ns[1], 2848),
@@ -11310,6 +12286,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Minimum");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2850),
 UA_NODEID_NUMERIC(ns[1], 2848),
@@ -11338,6 +12317,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "Nominal");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The MTConnect constraints. The Values or the Minimum, Maximum, and Nominal\\n      values should be provided. Multiple Values can be provided as an array as\\n      a set of allowable values for this \\gls{MTDataItem}. A constraint is used\\n      by a software application to evaluate the validity of the reported data.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2852),
 UA_NODEID_NUMERIC(ns[1], 2848),
@@ -11366,6 +12348,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 290);
 attr.displayName = UA_LOCALIZEDTEXT("", "Duration");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3672),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11394,6 +12379,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 10);
 attr.displayName = UA_LOCALIZEDTEXT("", "MinimumDeltaFilter");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2860),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11422,6 +12410,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2633);
 attr.displayName = UA_LOCALIZEDTEXT("", "Representation");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2846),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11450,6 +12441,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[1], 2636);
 attr.displayName = UA_LOCALIZEDTEXT("", "ResetTriggeredReason");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      These are the additional attributes that are relevent to numeric data\\n      items. The factory will evaluate these values and will set the engineering\\n      units and the range associated with the parent entity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3676),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11478,6 +12472,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The data item mixin will inject the properties and the methods into the\\n      related classes. This facility is similar to the Ruby module mixin or the\\n      Scala traits. data entity describing a piece of information reported about\\n      a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2840),
 UA_NODEID_NUMERIC(ns[1], 2429),
@@ -11502,6 +12499,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTDataItemClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Abstract base class for all the data item class types. The names are\\n      created by pascal typing the names and then generating appending\\n      \\mtmodel{Type}. data entity describing a piece of information reported\\n      about a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2425),
 UA_NODEID_NUMERIC(ns[0], 11163),
@@ -11525,6 +12525,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTSampleClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base type class for all data items with a \\gls{category} of\\n      \\mtmodel{SAMPLE}. An XML element that provides the information and data\\n      reported from a piece of equipment for those dataitem elements defined\\n      with a category attribute of sample category in the mtconnectdevices\\n      document. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2345),
 UA_NODEID_NUMERIC(ns[1], 2425),
@@ -11547,6 +12550,9 @@ static UA_StatusCode function_nodeset_437_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ClockTimeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value provided by a timing device at a specific point in time.\\n      $TIMESTAMP$ The value provided by a timing device at a specific point in\\n      time.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2279),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11569,6 +12575,9 @@ static UA_StatusCode function_nodeset_438_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ResistenceClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The degree to which a substance opposes the passage of an electric\\n      current. $OHM$\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2317),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11591,6 +12600,9 @@ static UA_StatusCode function_nodeset_439_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AngularVelocityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Rate of change of angular position. $\\frac{DEGREE}{SECOND}$ The\\n      measurement of the rate of change of angular position.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2271),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11613,6 +12625,9 @@ static UA_StatusCode function_nodeset_440_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PathFeedrateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The feedrate for the axes, or a single axis, associated with a\\n      \\mtmodel{Path} component a vector. $\\frac{MILLIMETER}{SECOND}$ The\\n      measurement of the feedrate for the axes, or a single axis, associated\\n      with a path component-a vector.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2303),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11635,6 +12650,9 @@ static UA_StatusCode function_nodeset_441_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "TemperatureClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The measurement of temperature. $CELSIUS$ The measurement of temperature.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2325),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11657,6 +12675,9 @@ static UA_StatusCode function_nodeset_442_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProcessTimerClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the amount of time a piece of equipment has performed\\n      different types of activities associated with the process being performed\\n      at that piece of equipment. Multiple subtypes of \\mtmodel{PROCESS_TIMER}\\n      may be defined. Typically, \\mtmodel{PROCESS_TIMER} SHOULD be modeled as a\\n      data item for the Device element, but MAY be modeled for either a\\n      Controller or Path Structural Element in the XML document. A \\gls{subType}\\n      MUST " "always be specified. $SECOND$ The measurement of the amount of time a\\n      piece of equipment has performed different types of activities associated\\n      with the process being performed at that piece of equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2315),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11679,6 +12700,9 @@ static UA_StatusCode function_nodeset_443_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AmperageClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of electrical current. $AMPERE$ The measurement of\\n      electrical current.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2273),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11701,6 +12725,9 @@ static UA_StatusCode function_nodeset_444_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LoadClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the actual versus the standard rating of a piece of\\n      equipment. $PERCENT$ The measurement of the actual versus the standard\\n      rating of a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2263),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11723,6 +12750,9 @@ static UA_StatusCode function_nodeset_445_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SoundLevelClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Measurement of a sound level or sound pressure level relative to\\n      atmospheric pressure. $DECIBEL$ The measurement of a sound level or sound\\n      pressure level relative to atmospheric pressure.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2321),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11745,6 +12775,9 @@ static UA_StatusCode function_nodeset_446_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "StrainClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The amount of deformation per unit length of an object when a load is\\n      applied. $PERCENT$ The measurement of the amount of deformation per unit\\n      length of an object when a load is applied.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2323),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11767,6 +12800,9 @@ static UA_StatusCode function_nodeset_447_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxisFeedrateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The feedrate of a linear axis. $\\frac{MILLIMETER}{SECOND}$ The measurement\\n      of the feedrate of a linear axis.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2277),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11789,6 +12825,9 @@ static UA_StatusCode function_nodeset_448_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "TorqueClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The turning force exerted on an object or by an object. $NEWTON \\times\\n      METER$ The measurement of the turning force exerted on an object or by an\\n      object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2331),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11811,6 +12850,9 @@ static UA_StatusCode function_nodeset_449_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VoltageClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of electrical potential between two points. $VOLT$ The\\n      measurement of electrical potential between two points.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2341),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11833,6 +12875,9 @@ static UA_StatusCode function_nodeset_450_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FrequencyClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the number of occurrences of a repeating event per unit\\n      time. $HERTZ$ The measurement of the number of occurrences of a repeating\\n      event per unit time.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2295),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11855,6 +12900,9 @@ static UA_StatusCode function_nodeset_451_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LengthClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The length of an object. $MILLIMETER$ The measurement of the length of an\\n      object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2297),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11877,6 +12925,9 @@ static UA_StatusCode function_nodeset_452_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PHClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measure of the acidity or alkalinity. $PH$ A measure of the acidity or\\n      alkalinity of a solution.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2307),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11899,6 +12950,9 @@ static UA_StatusCode function_nodeset_453_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FlowClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The rate of flow of a fluid. $\\frac{LITER}{SECOND}$ The measurement of the\\n      rate of flow of a fluid.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2293),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11921,6 +12975,9 @@ static UA_StatusCode function_nodeset_454_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LinearForceClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measure of the push or pull introduced by an actuator or exerted on an\\n      object. $NEWTON$ The measurement of the push or pull introduced by an\\n      actuator or exerted on an object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2299),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11943,6 +13000,9 @@ static UA_StatusCode function_nodeset_455_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AngularAccelerationClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Rate of change of angular velocity. $\\frac{DEGREE}{SECOND^{2}}$ The\\n      measurement rate of change of angular velocity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2269),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11965,6 +13025,9 @@ static UA_StatusCode function_nodeset_456_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AccumulatedTimeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of accumulated time for an activity or event. $SECOND$ The\\n      measurement of accumulated time for an activity or event.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2267),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -11987,6 +13050,9 @@ static UA_StatusCode function_nodeset_457_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AngleClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of angular position. $DEGREE$ The measurement of angular\\n      position.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2275),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12009,6 +13075,9 @@ static UA_StatusCode function_nodeset_458_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VoltAmpereReactiveClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of reactive power in an AC electrical circuit (commonly\\n      referred to as VAR). $VOLT \\times AMPERE (Reactive)$ The measurement of\\n      reactive power in an AC electrical circuit (commonly referred to as VAR).\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2337),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12031,6 +13100,9 @@ static UA_StatusCode function_nodeset_459_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "TiltClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A measurement of angular displacement. $MICRO \\cdot RADIAN$ The\\n      measurement of angular displacement. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2329),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12053,6 +13125,9 @@ static UA_StatusCode function_nodeset_460_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "TensionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A measurement of a force that stretches or elongates an object. $NEWTON$\\n      The measurement of a force that stretches or elongates an object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2327),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12075,6 +13150,9 @@ static UA_StatusCode function_nodeset_461_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VelocityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The rate of change of position. $\\frac{MILLIMETER}{SECOND}$ The\\n      measurement of the rate of change of position of a component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2335),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12097,6 +13175,9 @@ static UA_StatusCode function_nodeset_462_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ConductivityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The ability of a material to conduct electricity. $\\frac{SIEMENS}{METER}$\\n      The measurement of the ability of a material to conduct electricity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2283),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12119,6 +13200,9 @@ static UA_StatusCode function_nodeset_463_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MassClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the mass of an object(s) or an amount of material.\\n      $KILOGRAM$ The measurement of the mass of an object(s) or an amount of\\n      material.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2301),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12141,6 +13225,9 @@ static UA_StatusCode function_nodeset_464_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FillLevelClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the amount of a substance remaining compared to the\\n      planned maximum amount of that substance. $PERCENT$ The measurement of the\\n      amount of a substance remaining compared to the planned maximum amount of\\n      that substance.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2291),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12163,6 +13250,9 @@ static UA_StatusCode function_nodeset_465_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PressureClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The force per unit area exerted by a gas or liquid. $PASCAL$ The\\n      measurement of force per unit area exerted by a gas or liquid.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2313),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12185,6 +13275,9 @@ static UA_StatusCode function_nodeset_466_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "VoltAmpereClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measure of the apparent power in an electrical circuit, equal to the\\n      product of root-mean-square (RMS) voltage and RMS current (commonly\\n      referred to as VA). $VOLT \\times AMPERE$ The measurement of the apparent\\n      power in an electrical circuit, equal to the product of root-mean-square\\n      (RMS) voltage and RMS current (commonly referred to as VA).\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2333),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12207,6 +13300,9 @@ static UA_StatusCode function_nodeset_467_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PositionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A calculated or measured position related to a Component element.\\n      \\mtmodel{POSITION} SHOULD be further defined\\n      withacoordinateSytemattribute. If a coordinateSystem attribute is not\\n      specified, the position of the control point MUST be reported in\\n      \\mtmodel{MACHINE} coordinates. $MILLIMETER$ A measured or calculated\\n      position of a component element as reported by a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2309),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12229,6 +13325,9 @@ static UA_StatusCode function_nodeset_468_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PathPositionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A measured or calculated position of a control point associated with a\\n      \\mtmodel{Controller} element, or PATH element if provided, of a piece of\\n      equipment. The control point MUST be reported as a set of space-delimited\\n      floating-point numbers representing a point in 3-D space. The position of\\n      the control point MUST be reported in units of \\mtmodel{MILLIMETER} and\\n      listed in order of X, Y, and Z referenced to the coordinate system of the\\n      pie" "ce of equipment. $MILLIMETER (\\mathbb{R}^{3})$ A measured or calculated\\n      position of a control point associated with a controller element, or path\\n      element if provided, of a piece of equipment.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2305),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12251,6 +13350,9 @@ static UA_StatusCode function_nodeset_469_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RotaryVelocityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The rotational speed of a rotary axis. $\\frac{REVOLUTION}{MINUTE}$ The\\n      measurement of the rotational speed of a rotary axis.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2319),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12273,6 +13375,9 @@ static UA_StatusCode function_nodeset_470_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EquipmentTimerClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the amount of time a \\mtmodel{SECOND} piece of\\n      equipment or a sub-part of a piece of equipment has performed specific\\n      activities. Often used to determine when maintenance may be required for\\n      the equipment. Multiple subTypes of \\mtmodel{EQUIPMENT_TIMER} MAY be\\n      defined. A subType MUST always be specified. $SECOND$ The measurement of\\n      the amount of time a piece of equipment or a sub-part of a piece of\\n      equipment has perform" "ed specific activities.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2289),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12295,6 +13400,9 @@ static UA_StatusCode function_nodeset_471_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AccelerationClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Rate of change of velocity. $\\frac{MILLIMETER}{SECOND^{2}}$ The\\n      measurement of the rate of change of velocity.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2265),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12317,6 +13425,9 @@ static UA_StatusCode function_nodeset_472_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ViscosityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A measurement of a fluid’s resistance to flow. $PASCAL \\times SECOND$. The\\n      measurement of a fluids resistance to flow.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2339),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12339,6 +13450,9 @@ static UA_StatusCode function_nodeset_473_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PowerFactorClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the ratio of real power flowing to a load to the\\n      apparent power in that AC circuit. $PERCENT$ The measurement of the ratio\\n      of real power flowing to a load to the apparent power in that AC circuit.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2311),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12361,6 +13475,9 @@ static UA_StatusCode function_nodeset_474_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ConcentrationClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Percentage of one component within a mixture of components. $PERCENT$ The\\n      measurement of the percentage of one component within a mixture of\\n      components\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2281),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12383,6 +13500,9 @@ static UA_StatusCode function_nodeset_475_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WattageClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of power flowing through or dissipated by an electrical\\n      circuit or piece of equipment. $WATT$ The measurement of power flowing\\n      through or dissipated by an electrical circuit or piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2343),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12405,6 +13525,9 @@ static UA_StatusCode function_nodeset_476_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ElectricalEnergyClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of electrical energy consumption by a component. $WATT\\n      \\times SECOND$ The measurement of electrical energy consumption by a\\n      component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2287),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12427,6 +13550,9 @@ static UA_StatusCode function_nodeset_477_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DisplacementClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The change in position of an object. $MILLIMETER$ The measurement of the\\n      change in position of an object.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2285),
 UA_NODEID_NUMERIC(ns[1], 2345),
@@ -12450,6 +13576,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTEventClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base type class for all data items with a \\gls{category} of\\n      \\mtmodel{EVENT}. An XML element which provides the information and data\\n      reported from a piece of equipment for those dataitem elements defined\\n      with a category attribute of event category in the mtconnectdevices\\n      document.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2631),
 UA_NODEID_NUMERIC(ns[1], 2425),
@@ -12473,6 +13602,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTStringEventClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The base UA \\gls{Type} for all \\glspl{MTDataItem} that have a non-specific\\n      text representation.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2361),
 UA_NODEID_NUMERIC(ns[1], 2631),
@@ -12495,6 +13627,9 @@ static UA_StatusCode function_nodeset_480_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolAssetIdClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of an individual tool asset The identifier of an individual\\n      tool asset.The valid data value must be a text string.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2389),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12517,6 +13652,9 @@ static UA_StatusCode function_nodeset_481_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BlockClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The line of code or command being executed by a \\mtmodel{Controller}\\n      \\mtterm{Structural Element}. The value reported for \\mtmodel{Block} MUST\\n      include the entire expression for a line of program code, including all\\n      parameters. The line of code or command being executed by a controller\\n      structural element.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2363),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12539,6 +13677,9 @@ static UA_StatusCode function_nodeset_482_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LineClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "DEPRECATED in Version 1.4.0.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2409),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12561,6 +13702,9 @@ static UA_StatusCode function_nodeset_483_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolOffsetClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A reference to the tool offset variables applied to the active cutting\\n      tool associated with a Path in a Controller type component. The valid data\\n      value MUST be a text string. The reported value returned for\\n      \\mtmodel{TOOL_OFFSET} identifies the location in a table or list where the\\n      actual tool offset values are stored. A \\gls{subType} MUST always be\\n      specified. A reference to the tool offset variables applied to the active\\n      cutting tool ass" "ociated with a path in a controller type component.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2393),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12583,6 +13727,9 @@ static UA_StatusCode function_nodeset_484_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LineLabelClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An optional identifier for a \\mtmodel{BLOCK} of code in a\\n      \\mtmodel{PROGRAM}. An optional identifier for a block event of code in a\\n      program event.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2367),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12605,6 +13752,9 @@ static UA_StatusCode function_nodeset_485_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CoupledAxesClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Refers to the set of associated axes. The valid data value for\\n      \\mtmodel{COUPLED_AXES} SHOULD be a space-delimited set of axes reported as\\n      the value of the name attribute for each axis. If name is not available,\\n      the piece of equipment MUST report the value of the nativeName attribute\\n      for each axis. Refers to the set of associated axes.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2365),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12627,6 +13777,9 @@ static UA_StatusCode function_nodeset_486_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MessageClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       Any text string of information to be transferred from a piece of\\n      equipment to a client software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2403),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12649,6 +13802,9 @@ static UA_StatusCode function_nodeset_487_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgramCommentClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A comment or non-executable statement in the control program. A comment or\\n      non-executable statement in the control program. The valid data value must\\n      be a text string.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2385),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12671,6 +13827,9 @@ static UA_StatusCode function_nodeset_488_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WorkOffsetClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A reference to the offset variables for a work piece or part associated\\n      with a Path in a Controller type component. The valid data value MUST be a\\n      text string. The reported value returned for \\mtmodel{WORK_OFFSET}\\n      identifies the location in a table or list where the actual tool offset\\n      values are stored. A reference to the offset variables for a work piece or\\n      part associated with a path in a controller type component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2401),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12693,6 +13852,9 @@ static UA_StatusCode function_nodeset_489_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of a material used or consumed in the manufacturing\\n      process. The identifier of a material used or consumed in the\\n      manufacturing process.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2369),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12715,6 +13877,9 @@ static UA_StatusCode function_nodeset_490_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AssetRemovedClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       The value of the cdata for the event MUST be the assetid of the asset\\n      that has been removed. The asset will still be visible if requested with\\n      the includeremoved parameter as described in the protocol section. When\\n      assets are removed they are not moved to the beginning of the most\\n      recently modified list. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2407),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12737,6 +13902,9 @@ static UA_StatusCode function_nodeset_491_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgramEditNameClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The name of the program being edited. This is used in conjunction with\\n      \\mtmodel{PROGRAM_EDIT} when in \\mtmodel{ACTIVE} state. The name of the\\n      program being edited. This is used in conjunction with programedit event\\n      when in active value state. The valid data value must be a text string.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2381),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12759,6 +13927,9 @@ static UA_StatusCode function_nodeset_492_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AssetChangedClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       The value of the cdata for the event MUST be the assetid of the asset\\n      that has been added or changed. There will not be a separate message for\\n      new assets.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2405),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12781,6 +13952,9 @@ static UA_StatusCode function_nodeset_493_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgramHeaderClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The non-executable header section of the control program. The\\n      non-executable header section of the control program.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2383),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12803,6 +13977,9 @@ static UA_StatusCode function_nodeset_494_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SerialNumberClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The serial number associated with a \\mtmodel{Component}, \\mtmodel{Asset},\\n      or \\mtmodel{Device}. The serial number associated with a component, asset\\n      mtconnectassets, or device. The valid data value must be a text string.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2387),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12825,6 +14002,9 @@ static UA_StatusCode function_nodeset_495_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OperatorIdClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of the person currently responsible for operating the piece\\n      of equipment. DEPRECATION WARNING: May be deprecated in the future. See\\n      \\mtmodel{USER} below. The identifier of the person currently responsible\\n      for operating the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2371),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12847,6 +14027,9 @@ static UA_StatusCode function_nodeset_496_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WorkholdingClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The identifier for the workholding currently in use.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2399),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12869,6 +14052,9 @@ static UA_StatusCode function_nodeset_497_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PartIdClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An identifier of a part in a manufacturing operation. An identifier of a\\n      part in a manufacturing operation.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2375),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12891,6 +14077,9 @@ static UA_StatusCode function_nodeset_498_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PartNumberClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An identifier of a part or product moving through the manufacturing\\n      process. An identifier of a part or product moving through the\\n      manufacturing process. The valid data value must be a text string. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2377),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12913,6 +14102,9 @@ static UA_StatusCode function_nodeset_499_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgramClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The name of the logic or motion program being executed by the\\n      \\mtmodel{Controller} or \\mtmodel{Path} component. The name of the logic or\\n      motion program being executed by the controller component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2379),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12935,6 +14127,9 @@ static UA_StatusCode function_nodeset_500_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ToolNumberClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of a tool provided by the piece of equipment controller.\\n      The identifier assigned by the controller component to a cutting tool when\\n      in use by a piece of equipment. The valid data value must be a text\\n      string.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2391),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12957,6 +14152,9 @@ static UA_StatusCode function_nodeset_501_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "WireClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier for the type of wire used as the cutting mechanism in\\n      Electrical Discharge Machining or similar processes. A string like piece\\n      or filament of relatively rigid or flexible material provided in a variety\\n      of diameters.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2397),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -12979,6 +14177,9 @@ static UA_StatusCode function_nodeset_502_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "UserClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The identifier of the person currently responsible for operating the piece\\n      of equipment. A \\gls{subType} MUST always be specified. The identifier of\\n      the person currently responsible for operating the piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2395),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -13001,6 +14202,9 @@ static UA_StatusCode function_nodeset_503_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PalletIdClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The identifier for a pallet. The identifier for a pallet.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2373),
 UA_NODEID_NUMERIC(ns[1], 2361),
@@ -13024,6 +14228,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTControlledVocabEventClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The abstract base type for controlled events that represent states that\\n      are provided in related enumerations. These data items will be represented\\n      in an object of type \\mtuatype{MTControlledVocabEventType} derived from\\n      the OPC UA type \\uamodel{MultiStateValueDiscreteType}\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2144),
 UA_NODEID_NUMERIC(ns[1], 2631),
@@ -13046,6 +14253,9 @@ static UA_StatusCode function_nodeset_505_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PartChangeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to change the part or product associated with a piece of equipment\\n      to a different part or product. Service to change the part or product\\n      associated with a piece of equipment to a different part or product. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2259),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13068,6 +14278,9 @@ static UA_StatusCode function_nodeset_506_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CloseChuckClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Service to close a chuck. Service to close a chuck.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2256),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13090,6 +14303,9 @@ static UA_StatusCode function_nodeset_507_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CloseDoorClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Service to close a door. Service to close a door.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2250),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13112,6 +14328,9 @@ static UA_StatusCode function_nodeset_508_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OpenChuckClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Service to open a chuck. Service to open a chuck.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2253),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13134,6 +14353,9 @@ static UA_StatusCode function_nodeset_509_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxisInterlockClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indicator of the state of the axis lockout function when power has been\\n      removed and the axis is allowed to move freely. An indicator of the state\\n      of the axis lockout function when power has been removed and the axis is\\n      allowed to move freely.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2155),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13156,6 +14378,9 @@ static UA_StatusCode function_nodeset_510_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxisCouplingClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Describes the way the axes will be associated to each other. This is used\\n      in conjunction with \\mtmodel{COUPLED_AXES} to indicate the way they are\\n      interacting. The coupling MUST be viewed from the perspective of a\\n      specific axis. Therefore, a \\mtmodel{MASTER} coupling indicates that this\\n      axis is the master for the \\mtmodel{COUPLED_AXES}. Describes the way the\\n      axes will be associated to each other. This is used in conjunction with\\n      coupleda" "xes event to indicate the way they are interacting.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2152),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13197,7 +14422,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2961),
 UA_NODEID_NUMERIC(ns[1], 2199),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2961), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13217,6 +14442,9 @@ static UA_StatusCode function_nodeset_512_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxisStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indicator of the controlled state of a \\mtmodel{LINEAR} or\\n      \\mtmodel{ROTARY} component representing an axis. An indicator of the\\n      controlled state of a linear or rotary component representing an axis.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2158),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13258,7 +14486,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2967),
 UA_NODEID_NUMERIC(ns[1], 2158),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2967), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13278,6 +14506,9 @@ static UA_StatusCode function_nodeset_514_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialChangeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to change the type of material or product being loaded or fed to a\\n      piece of equipment. Service to change the type of material or product\\n      being loaded or fed to a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2235),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13300,6 +14531,9 @@ static UA_StatusCode function_nodeset_515_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EquipmentModeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication that a piece of equipment, or a sub-part of a piece of\\n      equipment, is performing specific types of activities. A \\gls{subType}\\n      MUST always be specified. An indication that a piece of equipment, or a\\n      sub-part of a piece of equipment, is performing specific types of\\n      activities.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2191),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13322,6 +14556,9 @@ static UA_StatusCode function_nodeset_516_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PathModeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Describes the operational relationship between a \\mtmodel{PATH}\\n      \\textit{Structural Element} and another \\mtmodel{PATH} \\textit{Structural\\n      Element} for pieces of equipment comprised of multiple logical groupings\\n      of controlled axes or other logical operations. Describes the operational\\n      relationship between a path structural element and another path structural\\n      element for pieces of equipment comprised of multiple logical groupings of\\n      cont" "rolled axes or other logical operations.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2215),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13363,7 +14600,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3033),
 UA_NODEID_NUMERIC(ns[1], 2209),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3033), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13383,6 +14620,9 @@ static UA_StatusCode function_nodeset_518_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DirectionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The direction of motion. A \\gls{subType} MUST always be specified. The\\n      direction of motion.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2179),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13424,7 +14664,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2985),
 UA_NODEID_NUMERIC(ns[1], 2179),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2985), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2205), false);
@@ -13444,6 +14684,9 @@ static UA_StatusCode function_nodeset_520_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialFeedClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to advance material or feed product to a piece of equipment from a\\n      continuous or bulk source. Service to advance material or feed product to\\n      a piece of equipment from a continuous or bulk source. \\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2231),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13466,6 +14709,9 @@ static UA_StatusCode function_nodeset_521_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PowerStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The indication of the status of the source of energy for a\\n      \\textit{Structural Element} to allow it to perform its intended function\\n      or the state of an enabling signal providing permission for the\\n      \\textit{Structural Element} to perform its functions. DEPRECATION WARNING:\\n      \\texttt{PowerState} may be deprecated in the future. The indication of the\\n      status of the source of energy for a structural element to allow it to\\n      perform its intended fu" "nction or the state of an enabling signal providing\\n      permission for the structural element to perform its functions.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2218),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13488,6 +14734,9 @@ static UA_StatusCode function_nodeset_522_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ProgramEditClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the status of the \\mtmodel{Controller} component’s\\n      program editing mode. On many controls, a program can be edited while\\n      another program is currently being executed. An indication of the status\\n      of the controller components program editing mode. On many controls, a\\n      program can be edited while another program is currently being executed.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2221),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13528,7 +14777,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3039),
 UA_NODEID_NUMERIC(ns[1], 2210),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3039), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2221), false);
@@ -13548,6 +14797,9 @@ static UA_StatusCode function_nodeset_524_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ExecutionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The execution status of the \\mtmodel{Controller} or \\mtmodel{Path}. The\\n      execution status of the controller.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2170),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13593,7 +14845,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2997),
 UA_NODEID_NUMERIC(ns[1], 2170),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2997), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13613,6 +14865,9 @@ static UA_StatusCode function_nodeset_526_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialRetractClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to remove or retract material or product. Service to remove or\\n      retract material or product.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2238),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13635,6 +14890,9 @@ static UA_StatusCode function_nodeset_527_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "FunctionalModeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current intended production status of the device or component.\\n      Typically, the \\texttt{FUNCTIONAL_MODE} SHOULD be modeled as a data item\\n      for the Device element, but MAY be modeled for any Structural Element in\\n      the XML document. The current intended production status of the device or\\n      component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2194),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13677,7 +14935,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3003),
 UA_NODEID_NUMERIC(ns[1], 2208),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3003), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2194), false);
@@ -13697,6 +14955,9 @@ static UA_StatusCode function_nodeset_529_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "OpenDoorClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "Service to open a door. Service to open a door.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2247),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13719,6 +14980,9 @@ static UA_StatusCode function_nodeset_530_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialUnloadClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to unload a piece of material or product. Service to unload a\\n      piece of material or product.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2244),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13741,6 +15005,9 @@ static UA_StatusCode function_nodeset_531_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RotaryModeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current operating mode for a \\mtmodel{Rotary} type axis. The current\\n      operating mode for a rotary type axis.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2224),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13781,7 +15048,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3045),
 UA_NODEID_NUMERIC(ns[1], 2211),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3045), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13801,6 +15068,9 @@ static UA_StatusCode function_nodeset_533_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "InterfaceStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current functional or operational state of an Interface type element\\n      indicating whether the Interface is active or not currently functioning.\\n      An indication of the operational state of an interface component\\n      component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2227),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13840,7 +15110,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3015),
 UA_NODEID_NUMERIC(ns[1], 2227),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3015), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -13860,6 +15130,9 @@ static UA_StatusCode function_nodeset_535_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SpindleInterlockClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the status of the spindle for a piece of equipment when\\n      power has been removed and it is free to rotate. An indication of the\\n      status of the spindle for a piece of equipment when power has been removed\\n      and it is free to rotate.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2212),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13882,6 +15155,9 @@ static UA_StatusCode function_nodeset_536_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MaterialLoadClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Service to load a piece of material or product. Service to load a piece of\\n      material or product.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2241),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13924,7 +15200,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3009),
 UA_NODEID_NUMERIC(ns[1], 2256),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3009), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2244), false);
@@ -13953,6 +15229,9 @@ static UA_StatusCode function_nodeset_538_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ControllerModeOverrideClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A setting or operator selection that changes the behavior of a piece of\\n      equipment. A setting or operator selection that changes the behavior of a\\n      piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2176),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -13992,7 +15271,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3021),
 UA_NODEID_NUMERIC(ns[1], 2218),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3021), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -14014,6 +15293,9 @@ static UA_StatusCode function_nodeset_540_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ActuatorStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the operational state of an apparatus for moving or\\n      controlling. Represents the operational state of an apparatus for moving\\n      or controlling a mechanism or system.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2146),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14036,6 +15318,9 @@ static UA_StatusCode function_nodeset_541_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AvailabilityClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      Represents the Agent's ability to communicate with the data source.\\n      This MUST be provided for a Device Element and MAY be provided for any\\n      other Structural Element. Represents the agent's ability to\\n      communicate with the data source.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2149),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14075,7 +15360,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2955),
 UA_NODEID_NUMERIC(ns[1], 2149),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2955), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -14095,6 +15380,9 @@ static UA_StatusCode function_nodeset_543_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DoorStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The opened or closed state of the door. The operational state of a door\\n      type component or composition element.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2182),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14117,6 +15405,9 @@ static UA_StatusCode function_nodeset_544_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EmergencyStopClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current state of the emergency stop signal. The current state of the\\n      emergency stop signal for a piece of equipment, controller path, or any\\n      other component or subsystem of a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2185),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14156,7 +15447,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2991),
 UA_NODEID_NUMERIC(ns[1], 2185),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2991), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2207), false);
@@ -14176,6 +15467,9 @@ static UA_StatusCode function_nodeset_546_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "EndOfBarClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of whether the end of a piece of bar stock being feed by a\\n      bar feeder has been reached. An indication of whether the end of a piece\\n      of bar stock being feed by a bar feeder has been reached.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2188),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14215,7 +15509,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3051),
 UA_NODEID_NUMERIC(ns[1], 2206),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3051), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -14235,6 +15529,9 @@ static UA_StatusCode function_nodeset_548_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ChuckInterlockClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the state of an interlock function or control logic state\\n      intended to prevent the associated \\mtmodel{Chuck} composition or function\\n      from being operated. An indication of the state of an interlock function\\n      or control logic state intended to prevent the associated chuck component\\n      from being operated.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2161),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14274,7 +15571,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2949),
 UA_NODEID_NUMERIC(ns[1], 2161),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2949), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2197), false);
@@ -14297,6 +15594,9 @@ static UA_StatusCode function_nodeset_550_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ControllerModeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current mode of the \\mtmodel{Controller} component. The current\\n      operating mode of the controller component.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2167),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14339,7 +15639,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2979),
 UA_NODEID_NUMERIC(ns[1], 2167),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2979), UA_NODEID_NUMERIC(ns[0], 46), UA_EXPANDEDNODEID_NUMERIC(ns[1], 2203), false);
@@ -14359,6 +15659,9 @@ static UA_StatusCode function_nodeset_552_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CompositionStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the operating condition of a mechanism represented by a\\n      \\mtmodel{Composition} type element. A \\gls{subType} MUST always be\\n      specified. A \\mtmodel{compositionId} MUST always be specified. An\\n      indication of the operating condition of a mechanism represented by a\\n      composition type element.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2173),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14408,7 +15711,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2973),
 UA_NODEID_NUMERIC(ns[1], 2202),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 2973), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -14428,6 +15731,9 @@ static UA_StatusCode function_nodeset_554_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ChuckStateClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      An indication of the operating state of a mechanism that holds a part or\\n      stock material during a manufacturing process. It may also represent a\\n      mechanism that holds any other mechanism in place within a piece of\\n      equipment. An indication of the operating state of a mechanism that holds\\n      a part or stock material during a manufacturing process. It may also\\n      represent a mechanism that holds any other mechanism in place within a\\n      piece of equipmen" "t.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2164),
 UA_NODEID_NUMERIC(ns[1], 2144),
@@ -14468,7 +15774,7 @@ retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 3027),
 UA_NODEID_NUMERIC(ns[1], 2164),
 UA_NODEID_NUMERIC(ns[0], 46),
-UA_QUALIFIEDNAME(0, "EnumStrings"),
+UA_QUALIFIEDNAME(ns[1], "EnumStrings"),
 UA_NODEID_NUMERIC(ns[0], 68),
 (const UA_NodeAttributes*)&attr, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES],NULL, NULL);
 retVal |= UA_Server_addReference(server, UA_NODEID_NUMERIC(ns[1], 3027), UA_NODEID_NUMERIC(ns[0], 37), UA_EXPANDEDNODEID_NUMERIC(ns[0], 78), true);
@@ -14490,6 +15796,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTNumericEventClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "The root type for all of the event types that have numeric \\gls{CDATA}.");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2359),
 UA_NODEID_NUMERIC(ns[1], 2631),
@@ -14512,6 +15821,9 @@ static UA_StatusCode function_nodeset_557_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "HardnessClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The measurement of the hardness of a material. The measurement does not\\n      provide a unit. A \\gls{subType} MUST always be specified to designate the\\n      hardness scale associated with the measurement. The measurement of the\\n      hardness of a material.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2351),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14534,6 +15846,9 @@ static UA_StatusCode function_nodeset_558_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LineNumberClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A reference to the position of a block of program code within a control\\n      program. The line number MAY represent either an absolute position\\n      starting with the first line of the program or an incremental position\\n      relative to the occurrence of the last \\mtmodel{LINE_LABEL}.\\n      \\mtmodel{LINE_NUMBER} does not change subject to any looping or branching\\n      in a control program. A \\gls{subType} MUST be defined. A reference to the\\n      position of a block o" "f program code within a control program.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2353),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14556,6 +15871,9 @@ static UA_StatusCode function_nodeset_559_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PartCountClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The current count of parts produced as represented by the Controller. The\\n      valid data value MUST be an integer value. The count of parts produced.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2355),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14578,6 +15896,9 @@ static UA_StatusCode function_nodeset_560_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "BlockCountClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The total count of the number of blocks of program code that have been\\n      executed since execution started. \\mtmodel{BLOCK_COUNT} counts blocks of\\n      program code executed regardless of program structure (e.g., looping or\\n      branching within the program). The starting value for\\n      \\mtmodel{BLOCK_COUNT} MAY be established by an initial value provided in\\n      the Constraint element defined for the data item. The total count of the\\n      number of blocks of progr" "am code that have been executed since execution\\n      started.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2349),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14600,6 +15921,9 @@ static UA_StatusCode function_nodeset_561_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "RotaryVelocityOverrideClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      A command issued to adjust the programmed velocity for a Rotary type axis.\\n      This command represents a percentage change to the velocity calculated by\\n      a logic or motion program or set by a switch for a Rotary type axis.\\n      \\mtmodel{ROTARY_VELOCITY_OVERRIDE} is expressed as a percentage of the\\n      programmed \\mtmodel{ROTARY_VELOCITY}. The value of a command issued to\\n      adjust the programmed velocity for a rotary type axis. This command\\n      represents a " "percentage change to the velocity calculated by a logic or\\n      motion program or set by a switch for a rotary type axis.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2357),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14622,6 +15946,9 @@ static UA_StatusCode function_nodeset_562_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "AxisFeedrateOverrideClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The value of a signal or calculation issued to adjust the feedrate of an\\n      individual linear type axis. The value provided for\\n      \\mtmodel{AXIS_FEEDRATE_OVERRIDE} is expressed as a percentage of the\\n      designated feedrate for the axis. When \\mtmodel{AXIS_FEEDRATE_OVERRIDE} is\\n      applied, the resulting commanded feedrate for the axis is limited to the\\n      value of the original feedrate multiplied by the value of the\\n      \\mtmodel{AXIS_FEEDRATE_OVERRIDE}. Th" "ere MAY be different subtypes of\\n      \\mtmodel{AXIS_FEEDRATE_OVERRIDE}; each representing an override value for\\n      a designated subtype of feedrate depending on the state of operation of\\n      the axis. The subtypes of operation of an axis are currently defined as\\n      \\mtmodel{PROGRAMMED}, \\mtmodel{JOG}, and \\mtmodel{RAPID}. The value of a\\n      signal or calculation issued to adjust the feedrate of an individual\\n      linear type axis.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2347),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14644,6 +15971,9 @@ static UA_StatusCode function_nodeset_563_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "PathFeedrateOverrideClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       The value of a signal or calculation issued to adjust the feedrate for\\n      the axes associated with a path component that may represent a single axis\\n      or the coordinated movement of multiple axes.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 3628),
 UA_NODEID_NUMERIC(ns[1], 2359),
@@ -14666,6 +15996,9 @@ static UA_StatusCode function_nodeset_564_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTMessageClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       Any text string of information to be transferred from a piece of\\n      equipment to a client software application.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2427),
 UA_NODEID_NUMERIC(ns[1], 2631),
@@ -14689,6 +16022,9 @@ UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.isAbstract = true;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTConditionClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The abstract type for all data items types that are specifically for\\n      \\mtmodel{CONDITION} \\gls{category}. An XML element which provides the\\n      information and data reported from a piece of equipment for those dataitem\\n      elements defined with a category attribute of condition category in the\\n      mtconnectdevices document.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2629),
 UA_NODEID_NUMERIC(ns[1], 2425),
@@ -14711,6 +16047,9 @@ static UA_StatusCode function_nodeset_566_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "HardwareClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An indication of a fault associated with the hardware subsystem of the\\n      structural element.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2419),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14733,6 +16072,9 @@ static UA_StatusCode function_nodeset_567_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "CommunicationsClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An indication that the piece of equipment has experienced a\\n      communications failure.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2413),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14755,6 +16097,9 @@ static UA_StatusCode function_nodeset_568_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "ActuatorClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       Redefined as a piece of equipment with the ability to be represented as a\\n      lower level component of a parent component element or as a composition\\n      element. See actuator type\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2411),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14777,6 +16122,9 @@ static UA_StatusCode function_nodeset_569_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "LogicProgramClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An indication that an error occurred in the logic program or programmable\\n      logic controller (PLC) associated with a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2417),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14799,6 +16147,9 @@ static UA_StatusCode function_nodeset_570_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "DataRangeClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An indication that the value of the data associated with a measured value\\n      or a calculation is outside of an expected range.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2415),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14821,6 +16172,9 @@ static UA_StatusCode function_nodeset_571_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "SystemClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       A general purpose indication associated with an electronic component of a\\n      piece of equipment or a controller that represents a fault that is not\\n      associated with the operator, program, or hardware.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2423),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14843,6 +16197,9 @@ static UA_StatusCode function_nodeset_572_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MotionProgramClassType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n       An indication that an error occurred in the motion program associated\\n      with a piece of equipment.\\n");
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2421),
 UA_NODEID_NUMERIC(ns[1], 2629),
@@ -14865,6 +16222,9 @@ static UA_StatusCode function_nodeset_573_begin(UA_Server *server, UA_UInt16* ns
 UA_StatusCode retVal = UA_STATUSCODE_GOOD;
 UA_ObjectTypeAttributes attr = UA_ObjectTypeAttributes_default;
 attr.displayName = UA_LOCALIZEDTEXT("", "MTCompositionType");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The \\mtmodel{MTCompositionType} represents all composition entities. The\\n      specification of how to form the \\gls{BrowseName} is specified in\\n      Section~\\ref{sec:browse-name-rules}. The data items are added to the\\n      relationship where the \\gls{MTDataItem} to \\gls{Composition} relationship\\n      is represented by the \\gls{BrowseName} Composition property of the data\\n      item. The data items are added to the \\gls{Composition} by their\\n      \\glspl{BrowseNam" "e}. An XML element used to describe the lowest level\\n      structural building blocks contained within a component element.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_OBJECTTYPE,
 UA_NODEID_NUMERIC(ns[1], 2067),
 UA_NODEID_NUMERIC(ns[0], 58),
@@ -14892,6 +16252,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Uuid");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The \\mtmodel{MTCompositionType} represents all composition entities. The\\n      specification of how to form the \\gls{BrowseName} is specified in\\n      Section~\\ref{sec:browse-name-rules}. The data items are added to the\\n      relationship where the \\gls{MTDataItem} to \\gls{Composition} relationship\\n      is represented by the \\gls{BrowseName} Composition property of the data\\n      item. The data items are added to the \\gls{Composition} by their\\n      \\glspl{BrowseNam" "e}. An XML element used to describe the lowest level\\n      structural building blocks contained within a component element.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2070),
 UA_NODEID_NUMERIC(ns[1], 2067),
@@ -14920,6 +16283,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "Name");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The \\mtmodel{MTCompositionType} represents all composition entities. The\\n      specification of how to form the \\gls{BrowseName} is specified in\\n      Section~\\ref{sec:browse-name-rules}. The data items are added to the\\n      relationship where the \\gls{MTDataItem} to \\gls{Composition} relationship\\n      is represented by the \\gls{BrowseName} Composition property of the data\\n      item. The data items are added to the \\gls{Composition} by their\\n      \\glspl{BrowseNam" "e}. An XML element used to describe the lowest level\\n      structural building blocks contained within a component element.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2071),
 UA_NODEID_NUMERIC(ns[1], 2067),
@@ -14948,6 +16314,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "MTTypeName");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The \\mtmodel{MTCompositionType} represents all composition entities. The\\n      specification of how to form the \\gls{BrowseName} is specified in\\n      Section~\\ref{sec:browse-name-rules}. The data items are added to the\\n      relationship where the \\gls{MTDataItem} to \\gls{Composition} relationship\\n      is represented by the \\gls{BrowseName} Composition property of the data\\n      item. The data items are added to the \\gls{Composition} by their\\n      \\glspl{BrowseNam" "e}. An XML element used to describe the lowest level\\n      structural building blocks contained within a component element.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2069),
 UA_NODEID_NUMERIC(ns[1], 2067),
@@ -14976,6 +16345,9 @@ attr.accessLevel = 1;
 attr.valueRank = -1;
 attr.dataType = UA_NODEID_NUMERIC(ns[0], 12);
 attr.displayName = UA_LOCALIZEDTEXT("", "XmlId");
+#ifdef UA_ENABLE_NODESET_COMPILER_DESCRIPTIONS
+attr.description = UA_LOCALIZEDTEXT("", "\\n      The \\mtmodel{MTCompositionType} represents all composition entities. The\\n      specification of how to form the \\gls{BrowseName} is specified in\\n      Section~\\ref{sec:browse-name-rules}. The data items are added to the\\n      relationship where the \\gls{MTDataItem} to \\gls{Composition} relationship\\n      is represented by the \\gls{BrowseName} Composition property of the data\\n      item. The data items are added to the \\gls{Composition} by their\\n      \\glspl{BrowseNam" "e}. An XML element used to describe the lowest level\\n      structural building blocks contained within a component element.\\n" );
+#endif
 retVal |= UA_Server_addNode_begin(server, UA_NODECLASS_VARIABLE,
 UA_NODEID_NUMERIC(ns[1], 2068),
 UA_NODEID_NUMERIC(ns[1], 2067),

@@ -1,5 +1,5 @@
 /* Generated from MTConnect.TypeDictionary.Binary.xml with script /usr/local/share/open62541/tools/generate_datatypes.py
- * on host SY-MacBook-Pro.local by user simon at 2019-12-03 03:27:01 */
+ * on host SY-MacBook-Pro.local by user simon at 2020-02-06 04:44:45 */
 
 #ifdef UA_ENABLE_AMALGAMATION
 # include "open62541.h"
@@ -66,20 +66,6 @@ UA_MTResetTriggerType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_
     return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_MTRESETTRIGGERTYPE], NULL);
 }
 
-/* CountDirectionDataType */
-static UA_INLINE size_t
-UA_CountDirectionDataType_calcSizeBinary(const UA_CountDirectionDataType *src) {
-    return UA_calcSizeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNTDIRECTIONDATATYPE]);
-}
-static UA_INLINE UA_StatusCode
-UA_CountDirectionDataType_encodeBinary(const UA_CountDirectionDataType *src, UA_Byte **bufPos, const UA_Byte *bufEnd) {
-    return UA_encodeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNTDIRECTIONDATATYPE], bufPos, &bufEnd, NULL, NULL);
-}
-static UA_INLINE UA_StatusCode
-UA_CountDirectionDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CountDirectionDataType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNTDIRECTIONDATATYPE], NULL);
-}
-
 /* MessageDataType */
 static UA_INLINE size_t
 UA_MessageDataType_calcSizeBinary(const UA_MessageDataType *src) {
@@ -106,20 +92,6 @@ UA_EmergencyStopDataType_encodeBinary(const UA_EmergencyStopDataType *src, UA_By
 static UA_INLINE UA_StatusCode
 UA_EmergencyStopDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_EmergencyStopDataType *dst) {
     return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_EMERGENCYSTOPDATATYPE], NULL);
-}
-
-/* MTLocationDataType */
-static UA_INLINE size_t
-UA_MTLocationDataType_calcSizeBinary(const UA_MTLocationDataType *src) {
-    return UA_calcSizeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_MTLOCATIONDATATYPE]);
-}
-static UA_INLINE UA_StatusCode
-UA_MTLocationDataType_encodeBinary(const UA_MTLocationDataType *src, UA_Byte **bufPos, const UA_Byte *bufEnd) {
-    return UA_encodeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_MTLOCATIONDATATYPE], bufPos, &bufEnd, NULL, NULL);
-}
-static UA_INLINE UA_StatusCode
-UA_MTLocationDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MTLocationDataType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_MTLOCATIONDATATYPE], NULL);
 }
 
 /* OpenStateDataType */
@@ -330,34 +302,6 @@ UA_MTRepresentationType_encodeBinary(const UA_MTRepresentationType *src, UA_Byte
 static UA_INLINE UA_StatusCode
 UA_MTRepresentationType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MTRepresentationType *dst) {
     return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_MTREPRESENTATIONTYPE], NULL);
-}
-
-/* CutterStatusDataType */
-static UA_INLINE size_t
-UA_CutterStatusDataType_calcSizeBinary(const UA_CutterStatusDataType *src) {
-    return UA_calcSizeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTERSTATUSDATATYPE]);
-}
-static UA_INLINE UA_StatusCode
-UA_CutterStatusDataType_encodeBinary(const UA_CutterStatusDataType *src, UA_Byte **bufPos, const UA_Byte *bufEnd) {
-    return UA_encodeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTERSTATUSDATATYPE], bufPos, &bufEnd, NULL, NULL);
-}
-static UA_INLINE UA_StatusCode
-UA_CutterStatusDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CutterStatusDataType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTERSTATUSDATATYPE], NULL);
-}
-
-/* CuttingToolDefintionFormatDataType */
-static UA_INLINE size_t
-UA_CuttingToolDefintionFormatDataType_calcSizeBinary(const UA_CuttingToolDefintionFormatDataType *src) {
-    return UA_calcSizeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTINGTOOLDEFINTIONFORMATDATATYPE]);
-}
-static UA_INLINE UA_StatusCode
-UA_CuttingToolDefintionFormatDataType_encodeBinary(const UA_CuttingToolDefintionFormatDataType *src, UA_Byte **bufPos, const UA_Byte *bufEnd) {
-    return UA_encodeBinary(src, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTINGTOOLDEFINTIONFORMATDATATYPE], bufPos, &bufEnd, NULL, NULL);
-}
-static UA_INLINE UA_StatusCode
-UA_CuttingToolDefintionFormatDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CuttingToolDefintionFormatDataType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_CUTTINGTOOLDEFINTIONFORMATDATATYPE], NULL);
 }
 
 /* MTCoordinateSystemType */

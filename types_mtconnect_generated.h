@@ -1,5 +1,5 @@
 /* Generated from MTConnect.TypeDictionary.Binary.xml with script /usr/local/share/open62541/tools/generate_datatypes.py
- * on host SY-MacBook-Pro.local by user simon at 2019-12-03 03:27:01 */
+ * on host SY-MacBook-Pro.local by user simon at 2020-02-06 04:44:45 */
 
 #ifndef TYPES_MTCONNECT_GENERATED_H_
 #define TYPES_MTCONNECT_GENERATED_H_
@@ -19,8 +19,8 @@ _UA_BEGIN_DECLS
  * Every type is assigned an index in an array containing the type descriptions.
  * These descriptions are used during type handling (copying, deletion,
  * binary encoding, ...). */
-#define UA_TYPES_MTCONNECT_COUNT 32
-extern const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT];
+#define UA_TYPES_MTCONNECT_COUNT 28
+extern UA_EXPORT const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT];
 
 /**
  * InterfaceStatusDataType
@@ -86,19 +86,6 @@ UA_STATIC_ASSERT(sizeof(UA_MTResetTriggerType) == sizeof(UA_Int32), enum_must_be
 #define UA_TYPES_MTCONNECT_MTRESETTRIGGERTYPE 3
 
 /**
- * CountDirectionDataType
- * ^^^^^^^^^^^^^^^^^^^^^^
- */
-typedef enum {
-    UA_COUNTDIRECTIONDATATYPE_DOWN = 0,
-    UA_COUNTDIRECTIONDATATYPE_UP = 1,
-    __UA_COUNTDIRECTIONDATATYPE_FORCE32BIT = 0x7fffffff
-} UA_CountDirectionDataType;
-UA_STATIC_ASSERT(sizeof(UA_CountDirectionDataType) == sizeof(UA_Int32), enum_must_be_32bit);
-
-#define UA_TYPES_MTCONNECT_COUNTDIRECTIONDATATYPE 4
-
-/**
  * MessageDataType
  * ^^^^^^^^^^^^^^^
  * The encoding for MessageDataType */
@@ -107,7 +94,7 @@ typedef struct {
     UA_String text;
 } UA_MessageDataType;
 
-#define UA_TYPES_MTCONNECT_MESSAGEDATATYPE 5
+#define UA_TYPES_MTCONNECT_MESSAGEDATATYPE 4
 
 /**
  * EmergencyStopDataType
@@ -120,21 +107,7 @@ typedef enum {
 } UA_EmergencyStopDataType;
 UA_STATIC_ASSERT(sizeof(UA_EmergencyStopDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_EMERGENCYSTOPDATATYPE 6
-
-/**
- * MTLocationDataType
- * ^^^^^^^^^^^^^^^^^^
- */
-typedef enum {
-    UA_MTLOCATIONDATATYPE_CRIB = 0,
-    UA_MTLOCATIONDATATYPE_POT = 1,
-    UA_MTLOCATIONDATATYPE_STATION = 2,
-    __UA_MTLOCATIONDATATYPE_FORCE32BIT = 0x7fffffff
-} UA_MTLocationDataType;
-UA_STATIC_ASSERT(sizeof(UA_MTLocationDataType) == sizeof(UA_Int32), enum_must_be_32bit);
-
-#define UA_TYPES_MTCONNECT_MTLOCATIONDATATYPE 7
+#define UA_TYPES_MTCONNECT_EMERGENCYSTOPDATATYPE 5
 
 /**
  * OpenStateDataType
@@ -148,7 +121,7 @@ typedef enum {
 } UA_OpenStateDataType;
 UA_STATIC_ASSERT(sizeof(UA_OpenStateDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_OPENSTATEDATATYPE 8
+#define UA_TYPES_MTCONNECT_OPENSTATEDATATYPE 6
 
 /**
  * OnOffDataType
@@ -161,7 +134,7 @@ typedef enum {
 } UA_OnOffDataType;
 UA_STATIC_ASSERT(sizeof(UA_OnOffDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_ONOFFDATATYPE 9
+#define UA_TYPES_MTCONNECT_ONOFFDATATYPE 7
 
 /**
  * AxisCouplingDataType
@@ -176,7 +149,7 @@ typedef enum {
 } UA_AxisCouplingDataType;
 UA_STATIC_ASSERT(sizeof(UA_AxisCouplingDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_AXISCOUPLINGDATATYPE 10
+#define UA_TYPES_MTCONNECT_AXISCOUPLINGDATATYPE 8
 
 /**
  * FunctionalModeDataType
@@ -192,7 +165,7 @@ typedef enum {
 } UA_FunctionalModeDataType;
 UA_STATIC_ASSERT(sizeof(UA_FunctionalModeDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_FUNCTIONALMODEDATATYPE 11
+#define UA_TYPES_MTCONNECT_FUNCTIONALMODEDATATYPE 9
 
 /**
  * ActiveStateDataType
@@ -205,7 +178,7 @@ typedef enum {
 } UA_ActiveStateDataType;
 UA_STATIC_ASSERT(sizeof(UA_ActiveStateDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_ACTIVESTATEDATATYPE 12
+#define UA_TYPES_MTCONNECT_ACTIVESTATEDATATYPE 10
 
 /**
  * AxisStateDataType
@@ -220,7 +193,7 @@ typedef enum {
 } UA_AxisStateDataType;
 UA_STATIC_ASSERT(sizeof(UA_AxisStateDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_AXISSTATEDATATYPE 13
+#define UA_TYPES_MTCONNECT_AXISSTATEDATATYPE 11
 
 /**
  * MTCategoryType
@@ -234,7 +207,7 @@ typedef enum {
 } UA_MTCategoryType;
 UA_STATIC_ASSERT(sizeof(UA_MTCategoryType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_MTCATEGORYTYPE 14
+#define UA_TYPES_MTCONNECT_MTCATEGORYTYPE 12
 
 /**
  * CompositionStateDataType
@@ -257,7 +230,7 @@ typedef enum {
 } UA_CompositionStateDataType;
 UA_STATIC_ASSERT(sizeof(UA_CompositionStateDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_COMPOSITIONSTATEDATATYPE 15
+#define UA_TYPES_MTCONNECT_COMPOSITIONSTATEDATATYPE 13
 
 /**
  * ProgramEditDataType
@@ -271,7 +244,7 @@ typedef enum {
 } UA_ProgramEditDataType;
 UA_STATIC_ASSERT(sizeof(UA_ProgramEditDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_PROGRAMEDITDATATYPE 16
+#define UA_TYPES_MTCONNECT_PROGRAMEDITDATATYPE 14
 
 /**
  * DirectionDataType
@@ -286,7 +259,7 @@ typedef enum {
 } UA_DirectionDataType;
 UA_STATIC_ASSERT(sizeof(UA_DirectionDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_DIRECTIONDATATYPE 17
+#define UA_TYPES_MTCONNECT_DIRECTIONDATATYPE 15
 
 /**
  * MTSeverityDataType
@@ -300,7 +273,7 @@ typedef enum {
 } UA_MTSeverityDataType;
 UA_STATIC_ASSERT(sizeof(UA_MTSeverityDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_MTSEVERITYDATATYPE 18
+#define UA_TYPES_MTCONNECT_MTSEVERITYDATATYPE 16
 
 /**
  * ExecutionDataType
@@ -319,7 +292,7 @@ typedef enum {
 } UA_ExecutionDataType;
 UA_STATIC_ASSERT(sizeof(UA_ExecutionDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_EXECUTIONDATATYPE 19
+#define UA_TYPES_MTCONNECT_EXECUTIONDATATYPE 17
 
 /**
  * ControllerModeDataType
@@ -335,7 +308,7 @@ typedef enum {
 } UA_ControllerModeDataType;
 UA_STATIC_ASSERT(sizeof(UA_ControllerModeDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_CONTROLLERMODEDATATYPE 20
+#define UA_TYPES_MTCONNECT_CONTROLLERMODEDATATYPE 18
 
 /**
  * PathModeDataType
@@ -350,7 +323,7 @@ typedef enum {
 } UA_PathModeDataType;
 UA_STATIC_ASSERT(sizeof(UA_PathModeDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_PATHMODEDATATYPE 21
+#define UA_TYPES_MTCONNECT_PATHMODEDATATYPE 19
 
 /**
  * MTRepresentationType
@@ -364,45 +337,7 @@ typedef enum {
 } UA_MTRepresentationType;
 UA_STATIC_ASSERT(sizeof(UA_MTRepresentationType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_MTREPRESENTATIONTYPE 22
-
-/**
- * CutterStatusDataType
- * ^^^^^^^^^^^^^^^^^^^^
- */
-typedef enum {
-    UA_CUTTERSTATUSDATATYPE_AVAILABLE = 1,
-    UA_CUTTERSTATUSDATATYPE_ALLOCATED = 2,
-    UA_CUTTERSTATUSDATATYPE_BROKEN = 4,
-    UA_CUTTERSTATUSDATATYPE_EXPIRED = 16,
-    UA_CUTTERSTATUSDATATYPE_MEASURED = 32,
-    UA_CUTTERSTATUSDATATYPE_NEW = 64,
-    UA_CUTTERSTATUSDATATYPE_NOT_REGISTERED = 128,
-    UA_CUTTERSTATUSDATATYPE_RECONDITIONED = 256,
-    UA_CUTTERSTATUSDATATYPE_UNALLOCATE = 512,
-    UA_CUTTERSTATUSDATATYPE_UNAVAILABLE = 1024,
-    UA_CUTTERSTATUSDATATYPE_UNKNOWN = 2048,
-    UA_CUTTERSTATUSDATATYPE_USED = 4096,
-    __UA_CUTTERSTATUSDATATYPE_FORCE32BIT = 0x7fffffff
-} UA_CutterStatusDataType;
-UA_STATIC_ASSERT(sizeof(UA_CutterStatusDataType) == sizeof(UA_Int32), enum_must_be_32bit);
-
-#define UA_TYPES_MTCONNECT_CUTTERSTATUSDATATYPE 23
-
-/**
- * CuttingToolDefintionFormatDataType
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- */
-typedef enum {
-    UA_CUTTINGTOOLDEFINTIONFORMATDATATYPE_XML = 0,
-    UA_CUTTINGTOOLDEFINTIONFORMATDATATYPE_EXPRESS = 1,
-    UA_CUTTINGTOOLDEFINTIONFORMATDATATYPE_TEXT = 2,
-    UA_CUTTINGTOOLDEFINTIONFORMATDATATYPE_UNDEFINED = 3,
-    __UA_CUTTINGTOOLDEFINTIONFORMATDATATYPE_FORCE32BIT = 0x7fffffff
-} UA_CuttingToolDefintionFormatDataType;
-UA_STATIC_ASSERT(sizeof(UA_CuttingToolDefintionFormatDataType) == sizeof(UA_Int32), enum_must_be_32bit);
-
-#define UA_TYPES_MTCONNECT_CUTTINGTOOLDEFINTIONFORMATDATATYPE 24
+#define UA_TYPES_MTCONNECT_MTREPRESENTATIONTYPE 20
 
 /**
  * MTCoordinateSystemType
@@ -415,7 +350,7 @@ typedef enum {
 } UA_MTCoordinateSystemType;
 UA_STATIC_ASSERT(sizeof(UA_MTCoordinateSystemType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_MTCOORDINATESYSTEMTYPE 25
+#define UA_TYPES_MTCONNECT_MTCOORDINATESYSTEMTYPE 21
 
 /**
  * YesNoDataType
@@ -428,7 +363,7 @@ typedef enum {
 } UA_YesNoDataType;
 UA_STATIC_ASSERT(sizeof(UA_YesNoDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_YESNODATATYPE 26
+#define UA_TYPES_MTCONNECT_YESNODATATYPE 22
 
 /**
  * AvailabilityDataType
@@ -441,7 +376,7 @@ typedef enum {
 } UA_AvailabilityDataType;
 UA_STATIC_ASSERT(sizeof(UA_AvailabilityDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_AVAILABILITYDATATYPE 27
+#define UA_TYPES_MTCONNECT_AVAILABILITYDATATYPE 23
 
 /**
  * RotaryModeDataType
@@ -455,7 +390,7 @@ typedef enum {
 } UA_RotaryModeDataType;
 UA_STATIC_ASSERT(sizeof(UA_RotaryModeDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_ROTARYMODEDATATYPE 28
+#define UA_TYPES_MTCONNECT_ROTARYMODEDATATYPE 24
 
 /**
  * InterfaceStateDataType
@@ -471,7 +406,7 @@ typedef enum {
 } UA_InterfaceStateDataType;
 UA_STATIC_ASSERT(sizeof(UA_InterfaceStateDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_INTERFACESTATEDATATYPE 29
+#define UA_TYPES_MTCONNECT_INTERFACESTATEDATATYPE 25
 
 /**
  * ThreeSpaceSampleDataType
@@ -483,7 +418,7 @@ typedef struct {
     UA_Double z;
 } UA_ThreeSpaceSampleDataType;
 
-#define UA_TYPES_MTCONNECT_THREESPACESAMPLEDATATYPE 30
+#define UA_TYPES_MTCONNECT_THREESPACESAMPLEDATATYPE 26
 
 /**
  * QualifierDataType
@@ -496,7 +431,7 @@ typedef enum {
 } UA_QualifierDataType;
 UA_STATIC_ASSERT(sizeof(UA_QualifierDataType) == sizeof(UA_Int32), enum_must_be_32bit);
 
-#define UA_TYPES_MTCONNECT_QUALIFIERDATATYPE 31
+#define UA_TYPES_MTCONNECT_QUALIFIERDATATYPE 27
 
 
 _UA_END_DECLS

@@ -19,12 +19,19 @@ using namespace boost;
 
 #define MT_PROGRAM_NAME "open62541-based MTConnect Gateway"
 
-static Worker *createWorker(UA_Server *server, UA_NodeId &nodeId, string uri, string poll)
+static Worker *createWorker(UA_Server *server, UA_NodeId &nodeId, string uri, string poll,
+                            string initialWaitTime,
+                            string warningEventSeverity,
+                            string faultEventSeverity)
 {
     Worker *worker = new Worker();
 
-    if (!worker->setup(server, nodeId, uri, poll))
+    if (!worker->setup(server, nodeId, uri, poll,
+                       initialWaitTime, warningEventSeverity, faultEventSeverity))
+    {
+        delete worker;
         return nullptr;
+    }
 
     return worker;
 }
@@ -55,7 +62,7 @@ int main(int argc, char** argv)
     {
         std::cerr <<
             "Usage: " << endl <<
-            "    OPCUA-MTServer <uri> <poll cycle in seconds>" << endl <<
+            "    OPCUA-MTServer <uri> <freq in seconds>" << endl <<
             "Example:" << endl <<
             "    OPCUA-MTServer https://smstestbed.nist.gov/vds 60" << endl <<
             "or" << endl <<
@@ -97,14 +104,17 @@ int main(int argc, char** argv)
         return -1;
     }
 
-
     UA_NodeId topId = UA_NODEID_NUMERIC(0, UA_NS0ID_OBJECTSFOLDER);
     vector<Worker*> worker_pool;
     vector<thread*> thread_pool;
 
     boost::thread *bthread = nullptr;    
 
-    int index=1;
+    string initialWaitTime = settings.get("server|initialWaitTime", "10");
+    string warningEventSeverity = settings.get("server|warningEventSeverity", "500");
+    string faultEventSeverity = settings.get("server|faultEventSeverity", "1000");
+
+    int index = 1;
     while (true)
     {
         string key = "agents|url" + to_string(index);
@@ -113,8 +123,8 @@ int main(int argc, char** argv)
             break;
 
         string poll = settings.get("agents|freq" + to_string(index), "60");
-
-        Worker *worker = createWorker(server, topId, uri, poll);
+        Worker *worker = createWorker(server, topId, uri, poll,
+                                      initialWaitTime, warningEventSeverity, faultEventSeverity);
 
         if (worker == nullptr)
             continue;

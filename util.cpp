@@ -2,6 +2,8 @@
 #include <open62541/types.h>
 
 #include <boost/property_tree/xml_parser.hpp>
+#include <boost/thread/thread.hpp>
+#include <boost/chrono.hpp>
 
 #include <pthread.h>
 #include <iostream>
@@ -219,6 +221,16 @@ void util::log(const char *msg, ...)
     log("info", msg, args);
 }
 
+void util::log_debug(const char *msg, ...)
+{
+    if (!settings.logDebug)
+        return;
+
+    va_list args;
+    va_start(args, msg);
+    log("debug", msg, args);
+}
+
 void util::log_info(const char *msg, ...)
 {
     if (!settings.logInfo)
@@ -247,4 +259,9 @@ void util::log_error(const char *msg, ...)
     va_list args;
     va_start(args, msg);
     log("error", msg, args);
+}
+
+void util::sleep(int seconds)
+{
+    boost::this_thread::sleep_for( boost::chrono::seconds(seconds) );
 }

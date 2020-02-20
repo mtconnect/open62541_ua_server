@@ -1,6 +1,11 @@
 #ifndef AGENTHANDLER_H
 #define AGENTHANDLER_H
 
+#include <open62541/server.h>
+#include <open62541/server_config_default.h>
+#include <open62541/plugin/log_stdout.h>
+#include <open62541/types.h>
+
 #include <boost/property_tree/ptree.hpp>
 
 #include <string>
@@ -36,6 +41,9 @@ private:
     UA_UInt16 m_namespace;
     TypesMgr m_typesMgr;
 
+    int m_warningEventSeverity;
+    int m_faultEventSeverity;
+
 public:
     agentHandler();
     ~agentHandler();
@@ -69,7 +77,9 @@ private:
     void researchDisplayNames(ptree &pt, multiset<string> &appendBy);
 
 public:
-    void setup(UA_Server *uaServer, UA_NodeId topNode, int ns);
+    void setup(UA_Server *uaServer, UA_NodeId topNode, int ns,
+               int warningEventSeverity,
+               int faultEventSeverity);
     void processProbeInfo(string probeXml);
     bool parseStreamData(string xmlText);
     int processStreamData();

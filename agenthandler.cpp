@@ -9,8 +9,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/filesystem.hpp>
-#include <boost/thread.hpp>
-#include <boost/chrono.hpp>
+#include <boost/thread/mutex.hpp>
 
 #include <cstdio>
 #include <ctime>
@@ -37,17 +36,24 @@ static boost::mutex open62541_mutex;
 agentHandler::agentHandler()
 {
     m_uaServer = nullptr;
+    m_warningEventSeverity = 500;
+    m_faultEventSeverity = 1000;
 }
 
 agentHandler::~agentHandler()
 {
 }
 
-void agentHandler::setup(UA_Server *uaServer, UA_NodeId topNode, int ns)
+void agentHandler::setup(UA_Server *uaServer, UA_NodeId topNode, int ns,
+                         int warningEventSeverity,
+                         int faultEventSeverity)
 {
     m_uaServer = uaServer;
     m_topNode = topNode;
     m_namespace = ns;
+
+    m_warningEventSeverity = warningEventSeverity;
+    m_faultEventSeverity = faultEventSeverity;
 
     m_typesMgr.setup(uaServer);
 
@@ -749,7 +755,7 @@ bool agentHandler::parseStreamData(string xmlText)
     }
     catch (exception & e)
     {
-        util::log_error("%s", e.what());
+        util::log_error("Error in parsing XML %s [%s]", e.what(), m_xml.c_str());
         return false;
     }
 
@@ -950,7 +956,6 @@ void agentHandler::processMessageStream(string deviceName, string componentId, s
     auto iter = m_messageNodes.find(variable);
     if (iter == m_messageNodes.end())
     {
-
         if (VerifyReturn(UA_Server_createEvent(m_uaServer,
                                          UA_NODEID_NUMERIC(2, MT_MTMESSAGEEVENTTYPE),
                                          &messageNodeId)) == false)
@@ -1006,7 +1011,7 @@ void agentHandler::processMessageStream(string deviceName, string componentId, s
 
 void agentHandler::processConditionStream(string deviceName, string componentId, string variable, string dateTime, string state, string message, ptree& pt)
 {
-    UA_NodeId eventNodeId;// = UA_NODEID_NUMERIC(m_namespace, 0);
+    UA_NodeId *eventNodeId;// = UA_NODEID_NUMERIC(m_namespace, 0);
     string nativeCode = util::getJSON_data(pt, "<xmlattr>.nativeCode");
     string sequence = util::getJSON_data(pt, "<xmlattr>.sequence");
     string lastSequence = m_eventSequenceNums[variable];
@@ -1023,19 +1028,20 @@ void agentHandler::processConditionStream(string deviceName, string componentId,
     auto iter = m_eventNodes.find(key);
     if (iter == m_eventNodes.end())
     {
+        eventNodeId = &m_eventNodes[key];
+
         if (VerifyReturn(UA_Server_createEvent(m_uaServer,
                                                      UA_NODEID_NUMERIC(2, MT_MTCONDITIONEVENTTYPE),
-                                                     &eventNodeId)) == false)
+                                                     eventNodeId)) == false)
             return;
-
-        m_eventNodes[key] = eventNodeId;
     }
     else
     {
-        eventNodeId = iter->second;
+        eventNodeId = &iter->second;
+        util::log_debug("Found event %s EventId = %d", key.c_str(), eventNodeId->identifier.numeric);
     }
 
-    sendConditionEvent(eventNodeId, deviceName, componentId, variable, nativeCode, dateTime, state, message);
+    sendConditionEvent(*eventNodeId, deviceName, componentId, variable, nativeCode, dateTime, state, message);
 }
 
 void agentHandler::sendConditionEvent(UA_NodeId &eventNodeId, string deviceName, string componentId, string variable, string nativeCode, string dateTime, string state, string message)
@@ -1062,14 +1068,14 @@ void agentHandler::sendConditionEvent(UA_NodeId &eventNodeId, string deviceName,
     }
     else if (state.compare("Warning") == 0)
     {
-        eventSeverity = 500;
+        eventSeverity = m_warningEventSeverity;
         retain = true;
         activeState = "True";
         mtSeverity = UA_MTSEVERITYDATATYPE_WARNING;
     }
     else if (state.compare("Fault") == 0)
     {
-        eventSeverity = 1000;
+        eventSeverity = m_faultEventSeverity;
         retain = true;
         activeState = "True";
         mtSeverity = UA_MTSEVERITYDATATYPE_FAULT;
@@ -1203,6 +1209,15 @@ void agentHandler::sendConditionEvent(UA_NodeId &eventNodeId, string deviceName,
     VerifyReturn(UA_Server_triggerEvent(m_uaServer, eventNodeId,
                                      nodeId,
                                      NULL, UA_FALSE));
+
+    string key = variable;
+    if (nativeCode.length() > 0)
+        key += "@" + nativeCode;
+
+    util::log_info("Event@[%s] Device [%s] %s [%s] EventId:%d State:%s %s", dateTime.c_str(), deviceName.c_str(),
+                   key.c_str(), conditionName.c_str(), eventNodeId.identifier.numeric, state.c_str(),
+                   message.length() == 0 ? "" : ("Message ["+message+"]").c_str());
+
 
     if (state.compare("Normal") == 0 && nativeCode.length() == 0)
     {

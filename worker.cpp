@@ -3,8 +3,6 @@
 #include <open62541/server.h>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/thread/thread.hpp>
-#include <boost/chrono.hpp>
 #include <boost/filesystem.hpp>
 
 #include "httpreader.h"
@@ -13,16 +11,14 @@
 
 Worker::Worker()
 {
-    m_interval = 60;
-    m_poll_count = 0;
+    m_initialWaitTime = 60;
+    m_processedMsg = 0;
 }
 
-Worker::~Worker()
-{
-    m_reader.close();
-}
-
-bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval)
+bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval,
+                   string initialWaitTime,
+                   string warningEventSeverity,
+                   string faultEventSeverity)
 {
     m_uri = uri;
     m_uaServer = uaServer;
@@ -30,57 +26,78 @@ bool Worker::setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string in
 
     m_interval = atoi(interval.c_str());
     if (m_interval <= 0) {
-        util::log_error("interval [%s] is invalid", interval.c_str());
+        util::log_error("[%s] interval [%s] is invalid", uri.c_str(), interval.c_str());
         return false;
     }
+
+    m_initialWaitTime = atoi(initialWaitTime.c_str());
+    if (m_initialWaitTime <= 0)
+        m_initialWaitTime = 10;
+
+    int warningSeverity = atoi(warningEventSeverity.c_str());
+    if (warningSeverity <= 0)
+        warningSeverity = 500;
+
+    int faultSeverity = atoi(faultEventSeverity.c_str());
+    if (faultSeverity <= 0)
+        faultSeverity = 1000;
 
     m_namespace = UA_Server_addNamespace(m_uaServer, uri.c_str());
 
     util::log("Agent Uri:       %s", uri.c_str());
-    util::log("Poll Interval:   %s", interval.c_str());
+    util::log("Poll Interval:   %d", m_interval);
     util::log("namespace:       %d", m_namespace);
 
-    m_handler.setup(m_uaServer, m_topNode, m_namespace);
-    if (m_reader.parseUri(uri))
-        return setMetaInfo();
-
-    return false;
+    m_handler.setup(m_uaServer, m_topNode, m_namespace, warningSeverity, faultSeverity);
+    return parseUri(uri);
 }
 
 bool Worker::setMetaInfo()
 {
-    m_reader.setQuery("/probe");
-    string probeXml = m_reader.read();
-    if (probeXml.length() == 0)
-    {
-        util::log_error("No data!");
-        return false;
-    }
+    setQuery("/probe");
+    processQuery();
 
+    string probeXml = getXmlData();
     m_handler.processProbeInfo(probeXml);
-    m_reader.close();
     return true;
+}
+
+void Worker::readCurrentData()
+{
+    // read current data
+    setQuery("/current");
+    while (processQuery() == false) // synchronized read
+    {
+        // error, sleep and retry
+        util::sleep(1);
+    }
+    string xml = getXmlData();
+    onRead(xml);
 }
 
 void Worker::run()
 {
+    if (!setMetaInfo())
+        return;
+
+    // wait to allow OPC UA clients to reconnect
+    util::sleep(m_initialWaitTime);
+    readCurrentData();
+
     while (true)
-    {
-        poll();
-        boost::this_thread::sleep_for( boost::chrono::seconds(m_interval) );
+    {      
+        setQuery("/sample?interval=" + std::to_string(m_interval*1000) + "&from=" + m_next_sequence);
+        processStream(); // stream data
+
+        // sleep and retry
+        util::sleep(1);
     }
 }
 
-void Worker::poll()
+
+void Worker::onRead(string xmlData)
 {
-    m_poll_count++;
-
-    if (m_next_sequence.length() == 0)
-        m_reader.setQuery("/current");
-    else
-        m_reader.setQuery("/sample?count=10000&from="+m_next_sequence);
-
-    string xmlData = m_reader.read();
+    m_processedMsg++;
 
     if (xmlData.length() == 0)
     {
@@ -101,23 +118,25 @@ void Worker::poll()
     string sequence = m_handler.getJSON_data("MTConnectStreams.Header.<xmlattr>.nextSequence");
     if (sequence.compare(m_next_sequence) == 0)
     {
-        util::log_info("%s [round: %d] next sequence = %s, processed items = 0",
-                     m_uri.c_str(), m_poll_count, m_next_sequence.c_str());
+        if (sequence.length() > 0)
+            util::log_debug("%s [#%d] next sequence = %s No data changes",
+                         m_uri.c_str(), m_processedMsg, m_next_sequence.c_str());
         return;
     }
 
     if (sequence.length() == 0)
     {
         // last next_sequence may be invalid, reset to using "current" to fetch the latest data
-        util::log_warn("%s [round: %d] BAD sequence number, reset to fetch current data",
-                     m_uri.c_str(), m_poll_count);
+        util::log_warn("%s [#%d] BAD sequence number, reset to fetch current data",
+                     m_uri.c_str(), m_processedMsg);
         m_next_sequence = "";
         return;
     }
 
     int processCount = m_handler.processStreamData();
-    m_next_sequence = sequence;
-    util::log_info("%s [round: %d] next sequence = %s, processed items = %d",
-                 m_uri.c_str(), m_poll_count, m_next_sequence.c_str(), processCount);
+
+    m_next_sequence = sequence;  
+    util::log_debug("%s [#%d] next sequence = %s, processed items = %d",
+                 m_uri.c_str(), m_processedMsg, m_next_sequence.c_str(), processCount);
 }
 

@@ -11,8 +11,10 @@ using namespace boost;
 
 Settings::Settings()
 {
-    logWarn = true;
+    logDebug = true;
     logInfo = true;
+    logWarn = true;
+    logError = true;
 }
 
 string Settings::get(string key, string defValue)
@@ -39,10 +41,8 @@ void Settings::dump()
 int Settings::parse(string filename)
 {
     ifstream in(filename);
-    if (!in.is_open()) {
-        std::cerr << "Cannot open config file " << filename << "!" << endl;
+    if (!in.is_open())
         return -1;
-    }
 
     typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
     vector< string > vec;
@@ -56,10 +56,15 @@ int Settings::parse(string filename)
 
     while (getline(in, line))
     {
-        if (line[0] == '#')
-            continue;
-
         algorithm::trim(line);
+
+        pos = line.find_first_of("#");
+
+        if (pos != string::npos)
+        {
+            line = line.substr(0, pos);
+            algorithm::trim(line);
+        }
 
         // blank line
         if (line.length() == 0)
@@ -91,7 +96,6 @@ int Settings::parse(string filename)
             seqNum++;
             key = key.substr(1);
             algorithm::trim(key);
-
         }
 
         if (seqNum != 0)
@@ -103,15 +107,23 @@ int Settings::parse(string filename)
     in.close();
 
     string logLevel = get("logging|severity", "info");
+    if (logLevel.compare("info") == 0)
+        logDebug = false;
+    else
     if (logLevel.compare("warn") == 0)
+    {
+        logDebug = false;
         logInfo = false;
+    }
     else if (logLevel.compare("error") == 0)
     {
+        logDebug = false;
         logInfo = false;
         logWarn = false;
     }
-    else if (logLevel.compare("fatal") == 0)
+    else if (logLevel.compare("off") == 0)
     {
+        logDebug = false;
         logInfo = false;
         logWarn = false;
         logError = false;

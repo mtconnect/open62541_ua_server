@@ -1,5 +1,5 @@
 /* Generated from MTConnect.TypeDictionary.Binary.xml with script /usr/local/share/open62541/tools/generate_datatypes.py
- * on host SY-MacBook-Pro.local by user simon at 2019-11-24 10:52:04 */
+ * on host SY-MacBook-Pro.local by user simon at 2020-02-06 04:44:45 */
 
 #include "types_mtconnect_generated.h"
 
@@ -29,9 +29,6 @@ static UA_DataTypeMember AssetEventDataType_members[2] = {
 /* MTResetTriggerType */
 #define MTResetTriggerType_members NULL
 
-/* CountDirectionDataType */
-#define CountDirectionDataType_members NULL
-
 /* MessageDataType */
 static UA_DataTypeMember MessageDataType_members[2] = {
 {
@@ -51,9 +48,6 @@ static UA_DataTypeMember MessageDataType_members[2] = {
 
 /* EmergencyStopDataType */
 #define EmergencyStopDataType_members NULL
-
-/* MTLocationDataType */
-#define MTLocationDataType_members NULL
 
 /* OpenStateDataType */
 #define OpenStateDataType_members NULL
@@ -99,12 +93,6 @@ static UA_DataTypeMember MessageDataType_members[2] = {
 
 /* MTRepresentationType */
 #define MTRepresentationType_members NULL
-
-/* CutterStatusDataType */
-#define CutterStatusDataType_members NULL
-
-/* CuttingToolDefintionFormatDataType */
-#define CuttingToolDefintionFormatDataType_members NULL
 
 /* MTCoordinateSystemType */
 #define MTCoordinateSystemType_members NULL
@@ -171,7 +159,7 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     false, /* .pointerFree */
     false, /* .overlayable */
     2, /* .membersSize */
-    2745, /* .binaryEncodingId */
+    0, /* .binaryEncodingId */
     AssetEventDataType_members /* .members */
 },
 /* MTStatisticType */
@@ -200,19 +188,6 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     0, /* .binaryEncodingId */
     MTResetTriggerType_members /* .members */
 },
-/* CountDirectionDataType */
-{
-    UA_TYPENAME("CountDirectionDataType") /* .typeName */
-    {2, UA_NODEIDTYPE_NUMERIC, {3685}}, /* .typeId */
-    sizeof(UA_CountDirectionDataType), /* .memSize */
-    UA_TYPES_INT32, /* .typeIndex */
-    UA_DATATYPEKIND_ENUM, /* .typeKind */
-    true, /* .pointerFree */
-    UA_BINARY_OVERLAYABLE_INTEGER, /* .overlayable */
-    0, /* .membersSize */
-    0, /* .binaryEncodingId */
-    CountDirectionDataType_members /* .members */
-},
 /* MessageDataType */
 {
     UA_TYPENAME("MessageDataType") /* .typeName */
@@ -223,7 +198,7 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     false, /* .pointerFree */
     false, /* .overlayable */
     2, /* .membersSize */
-    2903, /* .binaryEncodingId */
+    0, /* .binaryEncodingId */
     MessageDataType_members /* .members */
 },
 /* EmergencyStopDataType */
@@ -238,19 +213,6 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     0, /* .membersSize */
     0, /* .binaryEncodingId */
     EmergencyStopDataType_members /* .members */
-},
-/* MTLocationDataType */
-{
-    UA_TYPENAME("MTLocationDataType") /* .typeName */
-    {2, UA_NODEIDTYPE_NUMERIC, {3688}}, /* .typeId */
-    sizeof(UA_MTLocationDataType), /* .memSize */
-    UA_TYPES_INT32, /* .typeIndex */
-    UA_DATATYPEKIND_ENUM, /* .typeKind */
-    true, /* .pointerFree */
-    UA_BINARY_OVERLAYABLE_INTEGER, /* .overlayable */
-    0, /* .membersSize */
-    0, /* .binaryEncodingId */
-    MTLocationDataType_members /* .members */
 },
 /* OpenStateDataType */
 {
@@ -447,32 +409,6 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     0, /* .binaryEncodingId */
     MTRepresentationType_members /* .members */
 },
-/* CutterStatusDataType */
-{
-    UA_TYPENAME("CutterStatusDataType") /* .typeName */
-    {2, UA_NODEIDTYPE_NUMERIC, {3686}}, /* .typeId */
-    sizeof(UA_CutterStatusDataType), /* .memSize */
-    UA_TYPES_INT32, /* .typeIndex */
-    UA_DATATYPEKIND_ENUM, /* .typeKind */
-    true, /* .pointerFree */
-    UA_BINARY_OVERLAYABLE_INTEGER, /* .overlayable */
-    0, /* .membersSize */
-    0, /* .binaryEncodingId */
-    CutterStatusDataType_members /* .members */
-},
-/* CuttingToolDefintionFormatDataType */
-{
-    UA_TYPENAME("CuttingToolDefintionFormatDataType") /* .typeName */
-    {2, UA_NODEIDTYPE_NUMERIC, {3687}}, /* .typeId */
-    sizeof(UA_CuttingToolDefintionFormatDataType), /* .memSize */
-    UA_TYPES_INT32, /* .typeIndex */
-    UA_DATATYPEKIND_ENUM, /* .typeKind */
-    true, /* .pointerFree */
-    UA_BINARY_OVERLAYABLE_INTEGER, /* .overlayable */
-    0, /* .membersSize */
-    0, /* .binaryEncodingId */
-    CuttingToolDefintionFormatDataType_members /* .members */
-},
 /* MTCoordinateSystemType */
 {
     UA_TYPENAME("MTCoordinateSystemType") /* .typeName */
@@ -546,14 +482,9 @@ const UA_DataType UA_TYPES_MTCONNECT[UA_TYPES_MTCONNECT_COUNT] = {
     UA_TYPES_MTCONNECT_THREESPACESAMPLEDATATYPE, /* .typeIndex */
     UA_DATATYPEKIND_STRUCTURE, /* .typeKind */
     true, /* .pointerFree */
-    true
-		 && UA_BINARY_OVERLAYABLE_FLOAT
-		 && UA_BINARY_OVERLAYABLE_FLOAT
-		 && offsetof(UA_ThreeSpaceSampleDataType, y) == (offsetof(UA_ThreeSpaceSampleDataType, x) + sizeof(UA_Double))
-		 && UA_BINARY_OVERLAYABLE_FLOAT
-		 && offsetof(UA_ThreeSpaceSampleDataType, z) == (offsetof(UA_ThreeSpaceSampleDataType, y) + sizeof(UA_Double)), /* .overlayable */
+    false, /* .overlayable */
     3, /* .membersSize */
-    2909, /* .binaryEncodingId */
+    0, /* .binaryEncodingId */
     ThreeSpaceSampleDataType_members /* .members */
 },
 /* QualifierDataType */

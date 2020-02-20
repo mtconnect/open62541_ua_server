@@ -75,10 +75,12 @@ public:
     static void log(const char * level, const char *msg, va_list args);
 
     static void log(const char *msg, ...);
+    static void log_debug(const char *msg, ...);
     static void log_info(const char *msg, ...);
     static void log_warn(const char *msg, ...);
     static void log_error(const char *msg, ...);
 
+    static void sleep(int seconds);
 };
 
 #endif // UTIL_H

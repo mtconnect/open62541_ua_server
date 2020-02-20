@@ -7,32 +7,35 @@
 #include "settings.h"
 #include "agenthandler.h"
 
-class Worker
+class Worker final: public HttpReader
 {
 private:
     Settings *m_settings;
     Settings m_itemManager;
-    HttpReader  m_reader;
     agentHandler    m_handler;
     UA_Server *m_uaServer;
     UA_NodeId m_topNode;
     int    m_namespace;
 
-
     string      m_uri;
     int         m_interval;
-    int         m_poll_count;
+    int         m_initialWaitTime;
+    int         m_processedMsg;
     string      m_next_sequence;
 
 public:
     Worker();
-    ~Worker();
 
-    bool setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval);
+    bool setup(UA_Server *uaServer, UA_NodeId topNode, string uri, string interval,
+               string initialWaitTime,
+               string warningEventSeverity,
+               string faultEventSeverity);
     bool setMetaInfo();
+    void readCurrentData();
 
     void run();
-    void poll();
+
+    void onRead(string xmlData);
 };
 
 #endif // WORKER_H
