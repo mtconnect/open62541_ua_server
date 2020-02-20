@@ -66,6 +66,16 @@ opcua-MTServer listens on default port **4840**. OPC UA clients can connect to t
 
 To help our project demonstration, an open62541-based MTConnect Gateway server is set up with the above configuration file **example.cfg**. Its endpoint URL is **opc.tcp://opc.mtconnect.org:4840**. **UAExpoert** or any OPC UA clients can communication with this server via this URL.
 
+hanges since v1.0.0 release
+-------
+
+1. Instead of polling MTAgents periodically, the server now reads data streaming from MTAgents. The frequency indicates how long MTAgents accumlate the data before pushing. This improves the efficiency of the data transfer specially on fast updates.
+2. Expand configurable parameters:
+	- Add initial wait time before reading data from MTAgents. This allows the server to reconnect any OPC UA clients before publishing any new data or events.
+	- Define OPC UA event severity level for MTConnect warning and fault conditions.
+	- Treat any content after '#' as comments.
+	- Add another log level - debug.
+
 Pre-built Binary Releases 
 -------
 
