@@ -66,16 +66,9 @@ opcua-MTServer listens on default port **4840**. OPC UA clients can connect to t
 
 To help our project demonstration, an open62541-based MTConnect Gateway server is set up with the above configuration file **example.cfg**. Its endpoint URL is **opc.tcp://opc.mtconnect.org:4840**. **UAExpoert** or any OPC UA clients can communication with this server via this URL.
 
-Binary Releases 
+Pre-built Binary Releases 
 -------
 
-Windows, Ubuntu, MacOS and Raspberry PI 4 pre-built binaries are available:
+Windows, Ubuntu, MacOS and Raspbian pre-built binaries are available in the release tab:
 
-Windows: [opcua-MTServer-1.0.0-win32.zip](https://github.com/mtconnect/open62541_ua_server/files/3993033/opcua-MTServer-1.0.0-win32.zip)
-
-Ubunt: [opcua-MTServer-1.0.0rc2-Linux.zip](https://github.com/mtconnect/open62541_ua_server/files/3993002/opcua-MTServer-1.0.0rc2-Linux.zip)
-
-MacOS: [opcua-MTServer-1.0.0rc2-Darwin.zip](https://github.com/mtconnect/open62541_ua_server/files/3992997/opcua-MTServer-1.0.0rc2-Darwin.zip)
-
-Raspberry PI 4: [opcua-MTServer-1.0.0rc2-Linux.zip](https://github.com/mtconnect/open62541_ua_server/files/3993028/opcua-MTServer-1.0.0rc2-Linux.zip)
-
+https://github.com/mtconnect/open62541_ua_server/releases
