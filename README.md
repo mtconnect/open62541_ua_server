@@ -40,26 +40,30 @@ opcua.cfg is a yaml file with configuration sections for MT Agents, logging and 
 # MTConnect agents information
 agents:
     - name: NIST
-      url: https://smstestbed.nist.gov/vds/
-      freq: 2
+      url:  https://smstestbed.nist.gov/vds
+      freq: 1
     - name: Mazak1
-      url: http://66.42.196.108:5610
-      freq: 5
+      url:  http://66.42.196.108:5610
+      freq: 10
     - name: Mazak2
-      url: http://66.42.196.108:5611
-      freq: 5
+      url:  http://66.42.196.108:5611
+      freq: 10
     - name: Mazak3
-      url: http://66.42.196.108:5612
-      freq: 5
+      url:  http://66.42.196.108:5612
+      freq: 10
 
-# serverity can be info, warn, error or fatal
+# serverity can be debug, info, warn, error or off
 logging:
-    severity: warn
+    severity: info
 
-# opcua server program name and its discover port #
+# opcua server program name and its discovery port #
 server: 
     name: open62541-based MTConnect Gateway
     port: 4840
+    initialWaitTime:      30    # initial wait time before reading data from agents
+    warningEventSeverity: 600   # OPC UA event severity level for MTConnect Warning conditions
+    faultEventSeverity:   900   # OPC UA event severity level for MTConnect Fault conditions 
+
 ```
 
 opcua-MTServer listens on default port **4840**. OPC UA clients can connect to this server using its endpoint URL **opc.tcp://host's name or ip address:4840**. 
