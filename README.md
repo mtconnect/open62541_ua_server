@@ -39,17 +39,17 @@ opcua.cfg is a yaml file with configuration sections for MT Agents, logging and 
 ```
 # MTConnect agents information
 agents:
-    - name: NIST
-      url:  https://smstestbed.nist.gov/vds
+    - name: GFAgie01
+      url:  https://smstestbed.nist.gov/vds/GFAgie01
       freq: 1
-    - name: Mazak1
-      url:  http://66.42.196.108:5610
+    - name: Mazak-5610
+      url:  http://mtconnect.mazakcorp.com:5610
       freq: 10
-    - name: Mazak2
-      url:  http://66.42.196.108:5611
+    - name: Mazak-5611
+      url:  http://mtconnect.mazakcorp.com:5611
       freq: 10
-    - name: Mazak3
-      url:  http://66.42.196.108:5612
+    - name: Mazak-5612
+      url:  http://mtconnect.mazakcorp.com:5612
       freq: 10
 
 # serverity can be debug, info, warn, error or off
