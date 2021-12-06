@@ -1,3 +1,8 @@
+MTConnect/OPC UA Gateway development is now moved to [Metalogi LLC](https://www.metalogi.io). It is part of MetaAgent product that supports running OPC UA gateway as a plugin in the MTConnect Agent in addition to running as a gateway process. Additional functions are added to allow secured connectionss and support MTConnect standard version 1.7 and 1.8. Metalogi MetaAgent consists of ingress and egress modules for both OPC UA and NC-Link. It provides cross-standard interoperability and simplify your system set up in integrating these standards.
+-----
+Demo version can be downloaded from https://www.metalogi.io/download. You can also check out the documentation and support site https://github.com/meta-logi/metaagent-support
+----
+
 MTConnect OPC UA Gateway server, **opcua-MTServer**, implements MTConnect OPC UA Companion Specification. It connects to MTConnect agents for the information of MT devices and monitors their real-time data.
 
 Building
